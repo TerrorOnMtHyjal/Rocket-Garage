@@ -2,7 +2,7 @@ const express           = require('express'),
       parser            = require('body-parser'),
       passport          = require('passport'),
       SteamStrategy     = require('../../').Strategy,
-      db                = require ('./db');
+      db                = require ('../db/db');
 
 const app               = express(),
       jsonParser        = parser.json();

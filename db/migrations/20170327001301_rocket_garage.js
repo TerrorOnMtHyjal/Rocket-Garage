@@ -24,9 +24,10 @@ exports.up = function(knex, Promise) {
     }),
 
     knex.schema.createTable('items', function(table){
-      table.increments('item_id').primary();
-      table.string('item_type');
-      table.string('item_name').unique();
+      table.increments('id').primary();
+      table.string('name').unique();
+      table.string('type');
+      table.string('rarity');
     }),
 
     knex.schema.createTable('paints', function(table){
@@ -34,7 +35,7 @@ exports.up = function(knex, Promise) {
       table.string('paint_color').unique();
     }),
 
-    knex.schema.createTable('paints', function(table){
+    knex.schema.createTable('certs', function(table){
       table.increments('cert_id').primary();
       table.string('cert_type').unique();
     })
