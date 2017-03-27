@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <p>Still here!</p>
+        <p><a href="auth/steam">Sign On with Steam</a></p>
       </div>
     );
   }

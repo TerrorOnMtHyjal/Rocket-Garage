@@ -4,10 +4,14 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.17.1",
+    "ejs": "^2.5.6",
     "express": "^4.15.2",
+    "express-session": "^1.15.2",
     "knex": "^0.12.9",
     "passport": "^0.3.2",
+    "passport-steam": "^1.0.8",
     "pg": "^6.1.5",
+    "pug": "^2.0.0-beta11",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
