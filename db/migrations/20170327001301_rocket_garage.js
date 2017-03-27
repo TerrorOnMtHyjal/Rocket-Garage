@@ -25,9 +25,10 @@ exports.up = function(knex, Promise) {
 
     knex.schema.createTable('items', function(table){
       table.increments('id').primary();
-      table.string('name').unique();
+      table.string('name');
       table.string('type');
       table.string('rarity');
+      table.string('body_type');
     }),
 
     knex.schema.createTable('paints', function(table){
