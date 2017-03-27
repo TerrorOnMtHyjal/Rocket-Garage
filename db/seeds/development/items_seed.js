@@ -20,8 +20,7 @@ exports.seed = function(knex, Promise) {
       }
     }
   }
-
-  return itemPromises;
+  return knex('items').del().then(() => Promise.all(itemPromises));
 };
 
 function seedItem(knex, rarity, item_type, item, body_type){

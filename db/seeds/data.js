@@ -1,6 +1,6 @@
 const items = {
   wheel : {
-    common : [
+    Common : [
       "Alchemist",
       "Almas",
       "Bender",
@@ -28,7 +28,7 @@ const items = {
       "Sweet Tooth",
       "Servergate"
     ],
-    exotic : [
+    Exotic : [
       "Photon",
       "Looper",
       "Lobo",
@@ -40,14 +40,14 @@ const items = {
       "Kalos",
       "Roulette"
     ],
-    import : [
+    Import : [
       "FSL"
     ],
-    limited : [
+    Limited : [
       "Goldstone",
       "Carriage"
     ],
-    premium : [
+    Premium : [
       "Cristiano",
       "Spinner",
       "Zippy",
@@ -66,14 +66,14 @@ const items = {
       "WW5SP",
       "OH5"
     ],
-    rare : [
+    Rare : [
       "Asterias",
       "Zeta"
     ],
-    uncommon : [
+    Uncommon : [
       "Rhino 2"
     ],
-    "very rare" : [
+    "Very Rare" : [
       "Chakram",
       "Troika",
       "Spiralis",
@@ -81,7 +81,7 @@ const items = {
     ]
   },
   body : {
-    common : [
+    Common : [
       "Octane",
       "Sweet Tooth",
       "Backfire",
@@ -94,7 +94,7 @@ const items = {
       "Venom",
       "X-Devil"
     ],
-    import : [
+    Import : [
       "Dominus GT",
       "Road Hog XL",
       "Takumi RX-T",
@@ -103,7 +103,7 @@ const items = {
       "Octane ZSR",
       "Endo"
     ],
-    premium : [
+    Premium : [
       "Takumi",
       "Dominus",
       "Scarab",
@@ -137,7 +137,7 @@ const items = {
       ]
     },
     Aftershock : {
-      premium : [
+      Premium : [
         "Copycat",
         "Tribal",
         "MIRV",
@@ -147,7 +147,7 @@ const items = {
       ]
     },
     Backfire : {
-      common : [
+      Common : [
         "Tech",
         "Flames",
         "Lightning",
@@ -158,7 +158,7 @@ const items = {
       ]
     },
     Breakout : {
-      common : [
+      Common : [
         "Flames",
         "Lightning",
         "Skulls",
@@ -167,7 +167,7 @@ const items = {
         "Tech",
         "Wings"
       ],
-      rare: [
+      Rare : [
         "Junk Food",
         "Shibuya",
         "Vice",
@@ -175,7 +175,7 @@ const items = {
         "Turbo",
         "Heiwa"
       ],
-      very_rare: [
+      "Very Rare" : [
         "Dot Matrix",
         "Snakeskin",
         "Distortion",
@@ -183,15 +183,15 @@ const items = {
       ]
     },
     "Breakout Type-S" : {
-      rare: [
+      Rare : [
         "Funny Book"
       ],
-      very_rare : [
+      "Very Rare" : [
         "Distortion"
       ]
     },
     Dominus : {
-      premium : [
+      Premium : [
         "Flames",
         "Scorpions",
         "Skulls",
@@ -199,19 +199,19 @@ const items = {
         "Tats",
         "Wings"
       ],
-      rare : [
+      Rare : [
         "Royalty",
         "Arcana",
         "Pollo Caliente",
         "Mondo",
         "Suji"
       ],
-      very_rare : [
+      "Very Rare" : [
         "Snakeskin"
       ]
     },
     "Dominus GT" : {
-      common : [
+      Common : [
         "Techno",
         "Flames",
         "Protractor",
@@ -219,15 +219,15 @@ const items = {
         "Sunburst",
         "Wings"
       ],
-      rare : [
+      Rare : [
         "Unmasked"
       ],
-      "very rare" : [
+      "Very Rare" : [
         "Distortion"
       ]
     },
     Endo : {
-      common : [
+      Common : [
         "Cupcake",
         "Circuit Pro",
         "Cyrus",
@@ -237,7 +237,7 @@ const items = {
       ]
     },
     Esper : {
-      premium : [
+      Premium : [
         "Shank",
         "Super F3",
         "Kaiju",
@@ -247,7 +247,7 @@ const items = {
       ]
     },
     Gizmo : {
-      common : [
+      Common : [
         "Flames",
         "Lightning",
         "Skulls",
@@ -256,12 +256,12 @@ const items = {
         "Tech",
         "Wings"
       ],
-      rare : [
+      Rare : [
         "Mean Streak"
       ]
     },
     Grog : {
-      premium : [
+      Premium : [
         "Bomber",
         "Cyclops",
         "Lepus",
@@ -271,7 +271,7 @@ const items = {
       ]
     },
     Hotshot : {
-      common : [
+      Common : [
         "Flames",
         "Lightning",
         "Skulls",
@@ -280,12 +280,12 @@ const items = {
         "Tech",
         "Wings"
       ],
-      rare : [
+      Rare : [
         "Hi-Tech"
       ]
     },
     Marauder : {
-      premium : [
+      Premium : [
         "Vagabond",
         "Big Buck",
         "Ruffian",
@@ -295,7 +295,7 @@ const items = {
       ]
     },
     Masamune : {
-      premium : [
+      Premium : [
         "Wildfire",
         "Otaku",
         "DJ Sushi",
@@ -303,13 +303,13 @@ const items = {
         "Road Rage",
         "Stars"
       ],
-      rare : [
+      Rare : [
         "Oni",
         "Kawaii"
       ]
     },
     Merc : {
-      common : [
+      Common : [
         "Dots",
         "Flames",
         "Lightning",
@@ -318,16 +318,16 @@ const items = {
         "Stripes",
         "Wings"
       ],
-      rare : [
+      Rare : [
         "Narwhal",
         "Flower Power"
       ],
-      "very rare" : [
+      "Very Rare" : [
         "Warlock"
       ]
     },
     Octane : {
-      common : [
+      Common : [
         "Flames",
         "Lightning",
         "Skulls",
@@ -336,14 +336,14 @@ const items = {
         "Tech",
         "Wings"
       ],
-      rare : [
+      Rare : [
         "Racer",
         "Dragon Lord",
         "Shisa",
         "Roadkill",
         "Griffon"
       ],
-      "very rare" : [
+      "Very Rare" : [
         "Distortion",
         "MG_88",
         "Kilowatt",
@@ -351,7 +351,7 @@ const items = {
       ]
     },
     "Octane ZSR" : {
-      common : [
+      Common : [
         "Gobo",
         "Wildfire",
         "Peace",
@@ -359,15 +359,15 @@ const items = {
         "Mean Streak",
         "Namesake"
       ],
-      rare : [
+      Rare : [
         "Tribal"
       ],
-      "very rare" : [
+      "Very Rare" : [
         "Distortion"
       ]
     },
     Paladin : {
-      common : [
+      Common : [
         "Flames",
         "Lightning",
         "Skulls",
@@ -378,7 +378,7 @@ const items = {
       ]
     },
     Proteus : {
-      premium : [
+      Premium : [
         "Crash Dive",
         "Cuttle Time",
         "Fathom",
@@ -388,7 +388,7 @@ const items = {
       ]
     },
     Ripper : {
-      premium : [
+      Premium : [
         "Bomber",
         "Flames",
         "Ockie",
@@ -398,7 +398,7 @@ const items = {
       ]
     },
     "Road Hog" : {
-      common : [
+      Common : [
         "Flames",
         "Lightning",
         "Skulls",
@@ -407,16 +407,16 @@ const items = {
         "Tech",
         "Wings"
       ],
-      rare : [
+      Rare : [
         "Carbonated",
         "Wildfire"
       ],
-      "very rare" : [
+      "Very Rare" : [
         "Snakeskin"
       ]
     },
     "Road Hog XL" : {
-      common : [
+      Common : [
         "Playtime",
         "Arsenal",
         "Horus",
@@ -426,7 +426,7 @@ const items = {
       ]
     },
     Scarab : {
-      premium : [
+      Premium : [
         "Derby Girl",
         "Bomani",
         "Flames",
@@ -436,7 +436,7 @@ const items = {
       ]
     },
     Takumi : {
-      premium : [
+      Premium : [
         "Chaser",
         "Copycat",
         "Crazy8",
@@ -444,18 +444,18 @@ const items = {
         "Reiko",
         "Stripes"
       ],
-      rare : [
+      Rare : [
         "Combo",
         "Whizzle",
         "Aqueous"
       ],
-      "very rare" : [
+      "Very Rare" : [
         "Anubis",
         "Distortion"
       ]
     },
     "Takumi RX-T" : {
-      common : [
+      Common : [
         "Blackwork",
         "Inked",
         "Party-Chan",
@@ -463,15 +463,15 @@ const items = {
         "Skullface",
         "Stripes"
       ],
-      rare : [
+      Rare : [
         "Super RX-T"
       ],
-      "very rare" : [
+      "Very Rare" : [
         "Distortion"
       ]
     },
     Triton : {
-      premium : [
+      Premium : [
         "Daddy-O",
         "Fugu",
         "Makai",
@@ -481,7 +481,7 @@ const items = {
       ]
     },
     Venom : {
-      common : [
+      Common : [
         "Tagged",
         "Dots",
         "Flames",
@@ -490,13 +490,13 @@ const items = {
         "Wings",
         "Stripes"
       ],
-      rare : [
+      Rare : [
         "Flex",
         "Nine Lives"
       ]
     },
     Vulcan : {
-      premium : [
+      Premium : [
         "Arc",
         "Armada",
         "Combat",
@@ -506,7 +506,7 @@ const items = {
       ]
     },
     "X-Devil" : {
-      common : [
+      Common : [
         "Flames",
         "Lightning",
         "Skulls",
@@ -515,15 +515,15 @@ const items = {
         "Tech",
         "Wings"
       ],
-      rare : [
+      Rare : [
         "Maximon"
       ],
-      "very rare" : [
+      "Very Rare" : [
         "Snakeskin"
       ]
     },
     "X-Devil MK2" : {
-      common : [
+      Common : [
         "Debugged",
         "Hyper",
         "Stars",
@@ -531,12 +531,12 @@ const items = {
         "Wings",
         "X"
       ],
-      rare : [
+      Rare : [
         "Cobra"
       ]
     },
     Zippy : {
-      premium : [
+      Premium : [
         "Caboodle",
         "Callous",
         "Flames",
@@ -547,7 +547,7 @@ const items = {
     }
   },
   boost : {
-    common : [
+    Common : [
       "Bubbles",
       "Confetti",
       "Datastream",
@@ -588,7 +588,7 @@ const items = {
       "Portal - Propulsion Gel",
       "Portal - Repulsion Gel"
     ],
-    import : [
+    Import : [
       "Pixel Fire",
       "Trinity",
       "Dark Matter",
@@ -596,12 +596,12 @@ const items = {
       "Proton",
       "Tachyon"
     ],
-    limited : [
+    Limited : [
       "Candy Corn",
       "Xmas",
       "Netherworld"
     ],
-    premium : [
+    Premium : [
       "Nitrous",
       "Burnout",
       "Accelerato",
@@ -611,13 +611,13 @@ const items = {
       "Batmobile",
       "Outatime"
     ],
-    "super rare" : [
+    "Super Rare" : [
       "Toon Smoke",
       "Frostbite",
       "Hearts",
       "Lightning"
     ],
-    "very rare" : [
+    "Very Rare" : [
       "Polygonal",
       "Ink",
       "Treasure",
@@ -626,7 +626,7 @@ const items = {
     ]
   },
   topper : {
-    common : [
+    Common : [
       "Bobby Helmet",
       "Brunnehilde",
       "Cherry Top",
@@ -651,7 +651,7 @@ const items = {
       "Sharkbite",
       "Hot Wheels"
     ],
-    limited : [
+    Limited : [
       "Gold Cap [Alpha Reward]",
       "Pumpkin",
       "Blitzen",
@@ -666,7 +666,7 @@ const items = {
       "Bunny Ears",
       "Easter Basket"
     ],
-    premium : [
+    Premium : [
       "Cavalier",
       "Locomotive",
       "Pixelated Shades",
@@ -675,13 +675,13 @@ const items = {
       "Cow Skull",
       "Mohawk"
     ],
-    rare : [
+    Rare : [
       "Robo-Visor",
       "Wildcat Ears",
       "Drink Helmet",
       "Clamshell"
     ],
-    uncommon : [
+    Uncommon : [
       "Unicorn",
       "Traffic Cone",
       "Tiara",

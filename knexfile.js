@@ -11,7 +11,7 @@ module.exports = {
   },
   development: {
     client: 'pg',
-    connection: 'postgres://localhost/rocket_garage_v1_test',
+    connection: 'postgres://localhost/rocket_garage_v1',
     migrations: {
       directory: __dirname + '/db/migrations'
     },
