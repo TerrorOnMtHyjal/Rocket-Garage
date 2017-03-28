@@ -4,7 +4,7 @@ const express           = require('express'),
       SteamStrategy     = require('passport-steam'),
       session           = require('express-session'),
       path              = require('path'),
-      util              = require('util')
+      util              = require('util'),
       db                = require ('../db/db');
 
 const app               = express(),

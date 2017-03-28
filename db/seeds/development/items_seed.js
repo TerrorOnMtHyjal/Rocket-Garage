@@ -29,6 +29,6 @@ function seedItem(knex, rarity, item_type, item, body_type){
                 name : item,
                 type : item_type,
                 rarity : rarity,
-                body_type: body_type || null
+                body_type : body_type || null                           
               });
 }
