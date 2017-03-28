@@ -1,14 +1,19 @@
 const express           = require('express'),
       parser            = require('body-parser'),
       passport          = require('passport'),
+      passportJWT       = require('passport-jwt'),
       SteamStrategy     = require('passport-steam'),
+      jwt               = require('jsonwebtoken'),
       session           = require('express-session'),
       path              = require('path'),
       util              = require('util'),
       db                = require ('../db/db');
 
 const app               = express(),
-      jsonParser        = parser.json();
+      jsonParser        = parser.json(),
+      ExtractJwt        = passportJWT.ExtractJwt,
+      JwtStrategy       = passportJWT.Strategy;
+
 
 app.set('views', __dirname + './../src/views');
 app.set('view engine', 'ejs');
@@ -23,10 +28,12 @@ app.use((req, res, next) => {
 //---------------------------------------------------------------------SERIALIZATION & STRATEGY
 
 passport.serializeUser(function(user, done) {
+  console.log("serialize has been called")
   done(null, user);
 });
 
 passport.deserializeUser(function(obj, done) {
+  console.log("deserialize has been called")
   done(null, obj);
 });
 
@@ -41,17 +48,34 @@ passport.use(new SteamStrategy({
   }
 ));
 
-//---------------------------------------------------------------------PASSPORT MIDDLEWARE
+const jwtOptions = {};
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
+jwtOptions.secretOrKey = 'testSecret123';
 
-app.use(session({
-  secret: 'thisIsMyTestSecretString',
-  name: 'uid',
-  resave: true,
-  saveUninitialized: true
+passport.use(new JwtStrategy(jwtOptions, (jwt_payload, next) => {
+  console.log('payload : ', jwt_payload);
+  db('users')
+  .where('steamID', '=', jwt_payload.steamID)
+  .then(user => {
+    if(user.length != 1){
+      next(null, false);
+    } else {
+      next(null, user);
+    }
+  });
 }));
 
+//---------------------------------------------------------------------PASSPORT MIDDLEWARE
+
+// app.use(session({
+//   secret: 'thisIsMyTestSecretString',
+//   name: 'uid',
+//   resave: true,
+//   saveUninitialized: true
+// }));
+
 app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.session());
 
 //----------------------------------------------------------------------TEST ROUTES
 
@@ -60,25 +84,45 @@ app.get('/', (req, res) => {
 });
 
 app.get('/auth/steam', 
-  passport.authenticate('steam', { failureRedirect: '/' }),
-  (req, res) => {
-    res.redirect('/');
-  });
+        passport.authenticate('steam', { failureRedirect: '/' }),
+        (req, res) => {
+          res.redirect('/');
+        });
 
 app.get('/auth/steam/return',
-  passport.authenticate('steam', { failureRedirect: '/'}),
-  (req, res) => {
-    res.redirect('/');
-  });
+        passport.authenticate('steam', { failureRedirect: '/'}),
+        (req, res) => {
+          const userSteamID = req.user._json.steamid;
 
-app.get('/api/items', checkAuth, (req, res) => {
-  db('items')
-  .select("*")
-  .then(items => {
-    res.status(200);
-    res.json(items);
-  });
-});
+          db('users')
+          .select('steamID', 'uid')
+          .where('steamID', "=", userSteamID)
+          .then(user => {
+            if(user.length != 1){
+              console.log("User not found, making a new one!");                               //if the user doesn't exist, insert into db
+              return db('users')
+              .insert({ steamID : userSteamID }, ['uid', 'steamID']);                         //return the uid and steamID of new user, format is : [{ }]
+            }
+            console.log("User found!");
+            return [{ uid : user[0].uid, steamID : user[0].steamID }];                        //if user exists, return in same format as new user db call : [{ }]
+          })
+          .then(result => {
+            const payload = { steamID : result[0].steamID };
+            const token = jwt.sign(payload, jwtOptions.secretOrKey);
+            res.redirect('/');  
+          });
+        });
+
+app.get('/api/items', 
+        passport.authenticate('jwt', { session : false }), 
+        (req, res) => {
+          db('items')
+          .select("*")
+          .then(items => {
+            res.status(200);
+            res.json(items);
+          });
+        });
 
 app.get('/api/items/:type', checkAuth, (req, res) => {
   db('items')

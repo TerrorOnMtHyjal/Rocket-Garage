@@ -4,7 +4,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <p><a href="auth/steam">Sign On with Steam</a></p>
+        <p><a href="http://localhost:9000/auth/steam">Sign On with Steam</a></p>
       </div>
     );
   }
