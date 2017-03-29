@@ -109,18 +109,22 @@ app.get('/api/auth/return',
           })
           .then(result => {
             console.log(result);
-            const payload = { steamID : result[0].steamID };
+            const payload = result[0];
             const token = jwt.sign(payload, jwtOptions.secretOrKey);
             res.cookie('accessToken', token);
             res.redirect(`/`);
           });
         });
 
-app.get('/api/items', 
+app.get('/api/user/items', 
         passport.authenticate('jwt', { session : false }), 
         (req, res) => {
-          db('items')
-          .select("*")
+          db('user_items')
+          .where("user_id", "=", req.user[0].uid)
+          .join('items', 'user_items.item', '=', 'items.iid')
+          .leftOuterJoin('paints', 'user_items.paint', '=', 'paints.pid')
+          .leftOuterJoin('certs', 'user_items.cert', '=', 'certs.cid')
+          .select('items.name', 'paints.color', 'certs.type')
           .then(items => {
             res.status(200);
             res.json(items);
