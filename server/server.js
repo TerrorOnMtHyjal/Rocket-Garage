@@ -1,4 +1,5 @@
 const express           = require('express'),
+      proxy             = require('http-proxy-middleware'),
       parser            = require('body-parser'),
       passport          = require('passport'),
       passportJWT       = require('passport-jwt'),
@@ -38,8 +39,8 @@ passport.deserializeUser(function(obj, done) {
 });
 
 passport.use(new SteamStrategy({
-    returnURL: 'http://localhost:9000/auth/steam/return',
-    realm: 'http://localhost:9000/',
+    returnURL: 'http://localhost:8080/api/auth/return',
+    realm: 'http://localhost:8080',
     apiKey: '6220B6C80257C88341932ABC2ADA553D'
   },
   function(identifier, profile, done) {
@@ -83,13 +84,13 @@ app.get('/', (req, res) => {
   res.render('index', {user: req.user});
 });
 
-app.get('/auth/steam', 
+app.get('/api/auth', 
         passport.authenticate('steam', { failureRedirect: '/' }),
         (req, res) => {
           res.redirect('/');
         });
 
-app.get('/auth/steam/return',
+app.get('/api/auth/return',
         passport.authenticate('steam', { failureRedirect: '/'}),
         (req, res) => {
           const userSteamID = req.user._json.steamid;
@@ -107,9 +108,11 @@ app.get('/auth/steam/return',
             return [{ uid : user[0].uid, steamID : user[0].steamID }];                        //if user exists, return in same format as new user db call : [{ }]
           })
           .then(result => {
+            console.log(result);
             const payload = { steamID : result[0].steamID };
             const token = jwt.sign(payload, jwtOptions.secretOrKey);
-            res.redirect('/');  
+            res.cookie('accessToken', token);
+            res.redirect(`/`);
           });
         });
 

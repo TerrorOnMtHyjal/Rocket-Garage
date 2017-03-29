@@ -16,9 +16,11 @@ exports.up = function(knex, Promise) {
             .references('iid')
             .inTable('items');
       table.integer('paint')
+            .nullable()
             .references('pid')
             .inTable('paints');
       table.integer('cert')
+            .nullable()
             .references('cid')
             .inTable('certs');
     }),
@@ -33,12 +35,13 @@ exports.up = function(knex, Promise) {
 
     knex.schema.createTable('paints', function(table){
       table.increments('pid').primary();
-      table.string('paint_color').unique();
+      table.string('color').unique();
     }),
 
     knex.schema.createTable('certs', function(table){
       table.increments('cid').primary();
-      table.string('cert_type').unique();
+      table.string('type').unique();
+      table.string('track');
     })
   ]);
 };
