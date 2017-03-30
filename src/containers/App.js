@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import ItemList from '../components/ItemList';
+import UserStore from '../components/UserStore';
+import Home from '../components/Home';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <p><a href="/api/auth"> Sign In With Steam </a></p>
-        <ItemList />
-      </div>
+      <Router>
+        <div>
+          <Route exact path="/" component={Home}/>
+          <Route exact path="/:username" component={UserStore}/>
+        </div>
+      </Router>
     );
   }
 }

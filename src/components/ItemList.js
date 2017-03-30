@@ -15,7 +15,7 @@ export class ItemList extends Component{
     return (
       <ul>
         {items.map((item, index) => {
-          return <li key={index}>{item.name} {item.color ? item.color : undefined} {item.type ? item.type : undefined}</li>
+          return <li key={index}>{item.name} {item.color ? item.color : undefined} {item.cert? item.cert : undefined}</li>
         })}
       </ul>
     );

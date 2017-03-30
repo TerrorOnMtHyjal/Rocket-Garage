@@ -2,15 +2,14 @@ export const USER_ITEMS_REQUEST = 'USER_ITEMS_REQUEST';
 export const USER_ITEMS_SUCCESS = 'USER_ITEMS_SUCCESS';
 export const USER_ITEMS_ERROR = 'USER_ITEMS_ERROR';
 
-export const getUserItems = () => dispatch => {
+export const getUserItems = (username) => dispatch => {
     const opts = {
       headers : {
         Authorization : `JWT ${document.cookie.split('=')[1]}`
       }
     }
     dispatch(requestUserItems());
-
-    return fetch('/api/user/items', opts)
+    return fetch(`/api/items/${username}`, opts)
     .then(response => {
       if(!response.ok) {
         throw new Error(response.statusText);
@@ -18,6 +17,7 @@ export const getUserItems = () => dispatch => {
       return response.json();
     })
     .then(userItems => {
+      console.log(userItems);
       dispatch(successUserItems(userItems));
     })
     .catch(err => {

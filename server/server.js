@@ -54,7 +54,6 @@ jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
 jwtOptions.secretOrKey = 'testSecret123';
 
 passport.use(new JwtStrategy(jwtOptions, (jwt_payload, next) => {
-  console.log('payload : ', jwt_payload);
   db('users')
   .where('steamID', '=', jwt_payload.steamID)
   .then(user => {
@@ -108,7 +107,6 @@ app.get('/api/auth/return',
             return [{ uid : user[0].uid, steamID : user[0].steamID }];                        //if user exists, return in same format as new user db call : [{ }]
           })
           .then(result => {
-            console.log(result);
             const payload = result[0];
             const token = jwt.sign(payload, jwtOptions.secretOrKey);
             res.cookie('accessToken', token);
@@ -116,7 +114,7 @@ app.get('/api/auth/return',
           });
         });
 
-app.get('/api/user/items', 
+app.get('/api/items', 
         passport.authenticate('jwt', { session : false }), 
         (req, res) => {
           db('user_items')
@@ -124,12 +122,34 @@ app.get('/api/user/items',
           .join('items', 'user_items.item', '=', 'items.iid')
           .leftOuterJoin('paints', 'user_items.paint', '=', 'paints.pid')
           .leftOuterJoin('certs', 'user_items.cert', '=', 'certs.cid')
-          .select('items.name', 'paints.color', 'certs.type')
+          .select('items.name as name', 'paints.color as color', 'certs.type as cert')
           .then(items => {
             res.status(200);
             res.json(items);
           });
         });
+
+app.get('/api/items/:username', (req, res) => {
+  console.log("pinged!")
+  db('users')
+  .where('username', '=', req.params.username)
+  .select('uid')
+  .then(result => {
+    if(result.length != 1){
+      res.json({message : "User not found, home boy!"});
+    }else{
+      return db('user_items')
+      .where('user_id', '=', result[0].uid)
+      .join('items', 'user_items.item', '=', 'items.iid')
+      .leftOuterJoin('paints', 'user_items.paint', '=', 'paints.pid')
+      .leftOuterJoin('certs', 'user_items.cert', '=', 'certs.cid')
+      .select('items.name as name', 'paints.color as color', 'certs.type as cert')
+    }
+  })
+  .then(items => {
+    res.json(items);
+  });
+});
 
 app.get('/logout', function(req, res){
   req.logout();

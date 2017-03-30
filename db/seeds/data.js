@@ -820,7 +820,10 @@ const data = {
     }
   ],
   users : [
-    '76561198050470061'
+    {
+      steamID : '76561198050470061',
+      username : 'dustwise'
+    }
   ]
 };
 

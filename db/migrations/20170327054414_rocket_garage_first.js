@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('users', function(table){
       table.increments('uid').primary();
       table.string('steamID').unique();
+      table.string('username').unique();
     }),
 
     knex.schema.createTable('user_items', function(table){
