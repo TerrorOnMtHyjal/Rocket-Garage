@@ -1,4 +1,4 @@
-const items = require('../data').data.items;
+const items = require('../data').items;
 
 exports.seed = function(knex, Promise) {
   const itemPromises = []

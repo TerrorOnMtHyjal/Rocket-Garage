@@ -734,6 +734,12 @@ const data = {
       item : 467,                             //bowler topper
       paint : 3,                              //cobalt
       cert : 5                                //juggler
+    },
+    {
+      user_id : 1,
+      item : 472,
+      paint : 7,
+      cert : 3
     }
   ],
   paints : [
@@ -818,4 +824,4 @@ const data = {
   ]
 };
 
-exports.data = data;
+module.exports = data;

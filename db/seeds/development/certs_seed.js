@@ -1,4 +1,4 @@
-const certs = require('../data').data.certs;
+const certs = require('../data').certs;
 
 exports.seed = function(knex, Promise) {
   const certPromises = [];

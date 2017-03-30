@@ -131,16 +131,6 @@ app.get('/api/user/items',
           });
         });
 
-app.get('/api/items/:type', checkAuth, (req, res) => {
-  db('items')
-  .select("*")
-  .where("type", "=", req.params.type)
-  .then(items => {
-    res.status(200);
-    res.json(items);
-  });
-});
-
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');

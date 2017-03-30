@@ -1,4 +1,4 @@
-const paints = require('../data').data.paints;
+const paints = require('../data').paints;
 
 exports.seed = function(knex, Promise) {
   const paintPromises = [];
