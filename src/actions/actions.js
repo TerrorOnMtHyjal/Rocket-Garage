@@ -17,7 +17,6 @@ export const getUserItems = (username) => dispatch => {
       return response.json();
     })
     .then(userItems => {
-      console.log(userItems);
       dispatch(successUserItems(userItems));
     })
     .catch(err => {
