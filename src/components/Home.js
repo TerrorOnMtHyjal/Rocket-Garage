@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 class Home extends Component {
   componentWillMount(){
-    this.props.dispatch(getUserItems());
+   // this.props.dispatch(getUserItems());
   }
   render() {
     return (
