@@ -48,10 +48,11 @@ function errorUserItems(err) {
   };
 }
 
-export const updateLoginStatus = (value) => {
+export const updateLoginStatus = (isLoggedInValue, uid) => {
   return {
     type : UPDATE_LOGIN_STATUS,
-    isLoggedInValue : value
+    isLoggedInValue,
+    uid
   };
 }
 

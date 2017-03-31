@@ -98,6 +98,7 @@ app.get('/api/auth/return',
             const payload = result[0];
             const token = jwt.sign(payload, jwtOptions.secretOrKey);
             res.cookie('accessToken', token);
+            res.cookie('uid', payload.uid);
             res.redirect(`/`);
           });
         });
