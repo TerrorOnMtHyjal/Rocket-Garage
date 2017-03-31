@@ -19,10 +19,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <TopBar />
+        <TopBar isLoggedIn={this.props.isLoggedIn}/>
         <Router>
           <div>
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/" render={() => <Home isLoggedIn={this.props.isLoggedIn}/>}/>
             <Route exact path="/:username" component={UserStore}/>
           </div>
         </Router>
