@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getUserItems } from '../actions/actions';
 import { connect } from 'react-redux';
-import ItemList from './ItemList';
+import ItemList from '../components/ItemList';
 
 class UserStore extends Component {
 

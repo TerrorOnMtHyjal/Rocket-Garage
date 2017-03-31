@@ -10,7 +10,7 @@ export class ItemList extends Component{
     return (
       <div className="itemListContainer">
         {items.map((item) => {
-          return <Item details={item}/>
+          return <Item key={item.uiid} details={item}/>
         })}
       </div>
     );

@@ -135,6 +135,7 @@ app.get('/api/items/:username', (req, res) => {
   .where('username', '=', req.params.username)
   .select('uid')
   .then(result => {
+    console.log(result);
     if(result.length != 1){
       res.json({message : "User not found, home boy!"});
     }else{
@@ -143,7 +144,7 @@ app.get('/api/items/:username', (req, res) => {
       .join('items', 'user_items.item', '=', 'items.iid')
       .leftOuterJoin('paints', 'user_items.paint', '=', 'paints.pid')
       .leftOuterJoin('certs', 'user_items.cert', '=', 'certs.cid')
-      .select('items.name as name', 'paints.color as color', 'certs.type as cert')
+      .select('items.name as name', 'paints.color as color', 'certs.type as cert', 'user_items.uiid as uiid')
     }
   })
   .then(items => {

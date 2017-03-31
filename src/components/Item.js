@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class Item extends Component {
   render() {
-    console.log(this.props)
     return (
       <div className="itemContainer">
         <div className="itemName"><p>Name: {this.props.details.name}</p></div>

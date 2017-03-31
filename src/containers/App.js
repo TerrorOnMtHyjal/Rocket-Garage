@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import ItemList from '../components/ItemList';
-import UserStore from '../components/UserStore';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import UserStore from './UserStore';
 import Home from '../components/Home';
 
 class App extends Component {
