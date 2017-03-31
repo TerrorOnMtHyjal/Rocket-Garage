@@ -18,7 +18,7 @@ const app               = express(),
 
 app.use(passport.initialize());
 
-const authRouter        = require('./routers/auth')(app, express, passport, db, jwt);
+const authRouter = require('./routers/auth')(app, express, passport, db, jwt);
 
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 app.use((req, res, next) => {

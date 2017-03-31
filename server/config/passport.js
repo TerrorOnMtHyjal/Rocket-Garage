@@ -21,8 +21,7 @@ module.exports = (passport) => {
     done(null, obj);
   });
 
-  passport.use(
-    new SteamStrategy(
+  passport.use(new SteamStrategy(
       {
         returnURL: 'http://localhost:8080/api/auth/return',
         realm: 'http://localhost:8080',
@@ -36,8 +35,7 @@ module.exports = (passport) => {
     )  
   );
 
-  passport.use(   
-    new JwtStrategy(
+  passport.use(new JwtStrategy(
       {
         jwtFromRequest : ExtractJwt.fromAuthHeader(),
         secretOrKey : 'testSecret123' 

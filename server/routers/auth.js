@@ -1,4 +1,4 @@
-const findOrCreateUser = require('../utils/utils').findOrCreateUser;
+import { findOrCreateUser, generateJWT } from '../utils/utils';
 
 module.exports = (app, express, passport) => {
   const authRouter = express.Router();
@@ -13,17 +13,8 @@ module.exports = (app, express, passport) => {
   authRouter.get('/return', 
     passport.authenticate('steam', { failureRedirect: '/'}),
     (req, res) => {
-      const userSteamID = req.user._json.steamid;
-
-      async function getUser () {
-        return findOrCreateUser(userSteamID)  
-      }
-      
-      getUser().then(user => {
-        console.log(user)
-        const payload = result[0];
-        const token = jwt.sign(payload, jwtOptions.secretOrKey);
-        res.cookie('accessToken', token);
+      findOrCreateUser(req.user._json.steamid).then(user => {
+        res.cookie('accessToken', generateJWT(user[0]));
         res.cookie('uid', payload.uid);
         res.redirect(`/`);
       });
