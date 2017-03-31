@@ -5,6 +5,7 @@ class Home extends Component {
   componentWillMount(){
    // this.props.dispatch(getUserItems());
   }
+  
   render() {
     return (
       <div>

@@ -1,0 +1,25 @@
+import { findOrCreateUser, generateJWT } from '../utils/utils';
+
+module.exports = (app, express, passport) => {
+  const authRouter = express.Router();
+
+  authRouter.get('/', 
+    passport.authenticate('steam', { failureRedirect: '/' }),
+    (req, res) => {
+      res.redirect('/');
+    }
+  );
+
+  authRouter.get('/return', 
+    passport.authenticate('steam', { failureRedirect: '/'}),
+    (req, res) => {
+      findOrCreateUser(req.user._json.steamid).then(user => {
+        res.cookie('accessToken', generateJWT(user[0]));
+        res.cookie('uid', payload.uid);
+        res.redirect(`/`);
+      });
+    }
+  );
+
+  return authRouter;
+}

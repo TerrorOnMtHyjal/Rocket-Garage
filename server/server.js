@@ -11,10 +11,14 @@ const express           = require('express'),
       db                = require ('../db/db');
 
 const app               = express(),
+      passportConfig    = require('./config/passport.js')(passport),
       jsonParser        = parser.json(),
       ExtractJwt        = passportJWT.ExtractJwt,
       JwtStrategy       = passportJWT.Strategy;
 
+app.use(passport.initialize());
+
+const authRouter = require('./routers/auth')(app, express, passport, db, jwt);
 
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 app.use((req, res, next) => {
@@ -24,84 +28,8 @@ app.use((req, res, next) => {
   next();
 });
 
-//---------------------------------------------------------------------SERIALIZATION & STRATEGY
-
-passport.serializeUser(function(user, done) {
-  console.log("serialize has been called")
-  done(null, user);
-});
-
-passport.deserializeUser(function(obj, done) {
-  console.log("deserialize has been called")
-  done(null, obj);
-});
-
-passport.use(new SteamStrategy({
-    returnURL: 'http://localhost:8080/api/auth/return',
-    realm: 'http://localhost:8080',
-    apiKey: '6220B6C80257C88341932ABC2ADA553D'
-  },
-  function(identifier, profile, done) {
-    profile.identifier = identifier;
-    return done(null, profile);
-  }
-));
-
-const jwtOptions = {};
-jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
-jwtOptions.secretOrKey = 'testSecret123';
-
-passport.use(new JwtStrategy(jwtOptions, (jwt_payload, next) => {
-  db('users')
-  .where('steamID', '=', jwt_payload.steamID)
-  .then(user => {
-    if(user.length != 1){
-      next(null, false);
-    } else {
-      next(null, user);
-    }
-  });
-}));
-
-app.use(passport.initialize());
-
 //----------------------------------------------------------------------ROUTES
-
-app.get('/', (req, res) => {
-  res.render('index', {user: req.user});
-});
-
-app.get('/api/auth', 
-        passport.authenticate('steam', { failureRedirect: '/' }),
-        (req, res) => {
-          res.redirect('/');
-        });
-
-app.get('/api/auth/return',
-        passport.authenticate('steam', { failureRedirect: '/'}),
-        (req, res) => {
-          const userSteamID = req.user._json.steamid;
-
-          db('users')
-          .select('steamID', 'uid')
-          .where('steamID', "=", userSteamID)
-          .then(user => {
-            if(user.length != 1){
-              console.log("User not found, making a new one!");                               //if the user doesn't exist, insert into db
-              return db('users')
-              .insert({ steamID : userSteamID }, ['uid', 'steamID']);                         //return the uid and steamID of new user, format is : [{ }]
-            }
-            console.log("User found!");
-            return [{ uid : user[0].uid, steamID : user[0].steamID }];                        //if user exists, return in same format as new user db call : [{ }]
-          })
-          .then(result => {
-            const payload = result[0];
-            const token = jwt.sign(payload, jwtOptions.secretOrKey);
-            res.cookie('accessToken', token);
-            res.cookie('uid', payload.uid);
-            res.redirect(`/`);
-          });
-        });
+app.use('/api/auth', authRouter);
 
 app.get('/api/items', 
         passport.authenticate('jwt', { session : false }), 
@@ -141,18 +69,6 @@ app.get('/api/items/:username', (req, res) => {
   });
 });
 
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
-
 app.listen(9000, () => {
   console.log("Listening on port 9000");
 });
-
-function checkAuth(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  console.log("Who are you!?");
-  res.redirect('/');
-}
-
