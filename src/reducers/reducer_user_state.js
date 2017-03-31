@@ -9,11 +9,8 @@ const initialState= {
 
 export default function userItems(state=initialState, action){
   switch (action.type){
-    case actions.USER_LOGIN_SUCCESS:
-      console.log("logged in!")
-      return { ...state, isLoggedIn : true };
-    case actions.USER_LOGIN_ERROR:
-      return { ...state, isLoggedIn : false };
+    case actions.UPDATE_LOGIN_STATUS:
+      return { ...state, isLoggedIn : action.isLoggedInValue };
     default:
       return state;
   }
