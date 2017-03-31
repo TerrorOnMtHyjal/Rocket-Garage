@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Item from './Item';
 
-export class ItemList extends Component{
+export default class ItemList extends Component{
 
   render(){
     const items = this.props.items;
@@ -16,5 +15,3 @@ export class ItemList extends Component{
     );
   }
 }
-
-export default connect()(ItemList);

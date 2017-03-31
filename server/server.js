@@ -16,8 +16,6 @@ const app               = express(),
       JwtStrategy       = passportJWT.Strategy;
 
 
-app.set('views', __dirname + './../src/views');
-app.set('view engine', 'ejs');
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -65,19 +63,9 @@ passport.use(new JwtStrategy(jwtOptions, (jwt_payload, next) => {
   });
 }));
 
-//---------------------------------------------------------------------PASSPORT MIDDLEWARE
-
-// app.use(session({
-//   secret: 'thisIsMyTestSecretString',
-//   name: 'uid',
-//   resave: true,
-//   saveUninitialized: true
-// }));
-
 app.use(passport.initialize());
-//app.use(passport.session());
 
-//----------------------------------------------------------------------TEST ROUTES
+//----------------------------------------------------------------------ROUTES
 
 app.get('/', (req, res) => {
   res.render('index', {user: req.user});
