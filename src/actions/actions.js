@@ -1,48 +1,48 @@
-export const ITEMS_GET_REQUEST = 'ITEMS_GET_REQUEST';
-export const ITEMS_GET_SUCCESS = 'ITEMS_GET_SUCCESS';
-export const ITEMS_GET_ERROR = 'ITEMS_GET_ERROR';
+export const STORE_GET_REQUEST = 'STORE_GET_REQUEST';
+export const STORE_GET_SUCCESS = 'STORE_GET_SUCCESS';
+export const STORE_GET_ERROR = 'STORE_GET_ERROR';
 export const UPDATE_LOGIN_STATUS = 'UPDATE_LOGIN_STATUS';
 import cookie from 'react-cookie';
 
-export const getItems = (username = undefined) => dispatch => {
+export const getStore = (username = undefined) => dispatch => {
   const opts = { headers : { Authorization : `JWT ${cookie.load('accessToken')}` } };
-  const itemsType = username ? "store" : "user";
+  const storeType = username ? "store" : "user";
   
-  dispatch(itemsGetRequest());
-  fetch(username ? `/api/items/${username}` : '/api/items', opts)
+  dispatch(storeGetRequest());
+  fetch(username ? `/api/stores/${username}` : '/api/stores', opts)
   .then(response => {
     if(!response.ok) {
       throw new Error(response.statusText);
     }
     return response.json();
   })
-  .then(items => {
-    dispatch(itemsGetSuccess(items, itemsType));
+  .then(store => {
+    console.log(store)
+    dispatch(storeGetSuccess(store));
   })
   .catch(err => {
-    dispatch(itemsGetError(err));
+    dispatch(storeGetError(err));
   });
 }
 
-function itemsGetRequest() {
+function storeGetRequest() {
   return {
-    type : ITEMS_GET_REQUEST,
+    type : STORE_GET_REQUEST,
     isFetching : true
   };
 }
 
-function itemsGetSuccess(items, itemsType) {
+function storeGetSuccess(store) {
   return {
-    type : ITEMS_GET_SUCCESS,
+    type : STORE_GET_SUCCESS,
     isFetching : false,
-    items,
-    itemsType
+    store
   };
 }
 
-function itemsGetError(err) {
+function storeGetError(err) {
   return {
-    type : ITEMS_GET_ERROR,
+    type : STORE_GET_ERROR,
     isFetching : false,
     err
   };
@@ -55,4 +55,3 @@ export const updateLoginStatus = (isLoggedInValue, uid) => {
     uid
   };
 }
-

@@ -745,6 +745,19 @@ const data = {
       store_id : 1
     },
     {
+      user_id : 1,
+      item : 322,
+      paint : 2,
+      postType : "have",
+      store_id : 4
+    },
+    {
+      user_id : 1,
+      item : 237,
+      postType : "want",
+      store_id : 4
+    },
+    {
       user_id : 2,
       item : 467,
       paint : 3,
@@ -879,6 +892,13 @@ const data = {
       subheader : "I think some of this is good stuff?",
       platform : "PS4",
       primaryStore : true
+    },
+    {
+      user_id : 1,
+      header : "Ol' Dusty's Second Shop!",
+      subheader : "Have a look around. And of course this one is PC as well!",
+      platform : "PC",
+      primaryStore : false
     }
   ]
 };

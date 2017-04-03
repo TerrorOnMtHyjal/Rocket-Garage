@@ -9,6 +9,8 @@
     "express-session": "^1.15.2",
     "jsonwebtoken": "^7.3.0",
     "knex": "^0.12.9",
+    "knexnest": "^0.4.1",
+    "nesthydrationjs": "^1.0.2",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
     "passport-steam": "^1.0.8",

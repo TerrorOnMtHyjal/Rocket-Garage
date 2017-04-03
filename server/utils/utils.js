@@ -1,5 +1,21 @@
+const nest = require('nesthydrationjs')();
+
 const db  = require ('../../db/db'),
       jwt = require('jsonwebtoken');
+
+const storeDefinition = [{
+  header : 'header',
+  subheader : 'subheader',
+  platform : 'platform',
+  primaryStore : 'primaryStore',
+  items : [{
+    name : 'name',
+    color : 'color',
+    cert : 'cert',
+    uiid : 'uiid',
+    type : 'type'
+  }]
+}];
 
 exports.findOrCreateUser = (userSteamID) => {
   return db('users')
@@ -33,4 +49,16 @@ exports.getItems = (uid) => {
   .leftOuterJoin('paints', 'user_items.paint', '=', 'paints.pid')
   .leftOuterJoin('certs', 'user_items.cert', '=', 'certs.cid')
   .select('items.name as name', 'paints.color as color', 'certs.type as cert', 'user_items.uiid as uiid')
-}      
+}
+
+exports.getStores = (uid) => {
+  return db('stores')
+  .where('stores.user_id', '=', uid)
+  .join('user_items', 'user_items.store_id', '=', 'stores.sid')
+  .join('items', 'user_items.item', '=', 'items.iid')
+  .leftOuterJoin('paints', 'user_items.paint', '=', 'paints.pid')
+  .leftOuterJoin('certs', 'user_items.cert', '=', 'certs.cid')
+  .select('stores.header as header', 'stores.subheader as subheader', 'stores.platform as platform', 'stores.primaryStore as primaryStore', 
+          'items.name as name', 'paints.color as color', 'certs.type as cert', 'user_items.uiid as uiid', 'items.type as type')
+  .then(data => nest.nest(data, storeDefinition))
+}           

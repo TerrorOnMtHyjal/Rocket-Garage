@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { getItems } from '../actions/actions';
+import { getStore } from '../actions/actions';
 import { connect } from 'react-redux';
 import ItemList from '../components/ItemList';
 
 class UserStore extends Component {
 
   componentWillMount() {
-    this.props.dispatch(getItems());
+    this.props.dispatch(getStore());
   }
 
   componentDidMount() {
