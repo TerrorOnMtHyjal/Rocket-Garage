@@ -10,12 +10,10 @@ const ExtractJwt        = passportJWT.ExtractJwt,
 module.exports = (passport) => {
 
   passport.serializeUser(function(user, done) {
-    console.log("serialize has been called")
     done(null, user);
   });
 
   passport.deserializeUser(function(obj, done) {
-    console.log("deserialize has been called")
     done(null, obj);
   });
 
@@ -27,7 +25,6 @@ module.exports = (passport) => {
       },
 
       (identifier, profile, done) => {
-        console.log("it's me! steam!")
         profile.identifier = identifier;
         return done(null, profile);
       }
@@ -40,8 +37,7 @@ module.exports = (passport) => {
         secretOrKey : 'testSecret123' 
       }, 
     
-      (jwt_payload, next) => {
-        console.log("it's me! jwt! ", jwt_payload)       
+      (jwt_payload, next) => {    
         db('users')
         .where('steamID', '=', jwt_payload.steamID)
         .then(user => {
