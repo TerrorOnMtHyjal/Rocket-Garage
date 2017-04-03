@@ -16,7 +16,6 @@ module.exports = (app, express, passport) => {
       findOrCreateUser(req.user._json.steamid).then(user => {
         const payload = user[0];      
         res.cookie('accessToken', generateJWT(payload));
-        res.cookie('uid', payload.uid);  //neccesary?
         res.redirect(`/`);
       });
     }

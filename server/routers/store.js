@@ -9,7 +9,6 @@ module.exports = (app, express, passport) => {
       return getStores(result[0].uid);
     })
     .then(stores => {
-      console.log(stores)
       res.json(stores);
     });
   });
@@ -19,7 +18,6 @@ module.exports = (app, express, passport) => {
     (req, res) => {
       getStores(req.user[0].uid)
       .then(stores => {
-        console.log(stores);
         res.json(stores);
       });
     });

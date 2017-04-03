@@ -1,3 +1,5 @@
+//naming conventions not constant
+
 const data = {
   items : {
     wheel : {

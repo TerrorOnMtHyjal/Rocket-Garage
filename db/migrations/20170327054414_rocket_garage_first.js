@@ -62,15 +62,15 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('paints', (t) => {
       t.increments('pid').primary();
       t.enu('color', ['Black', 'Burnt Sienna', 'Cobalt', 'Crimson', 'Forest Green', 'Grey', 'Lime', 'Orange', 'Pink',
-                            'Purple', 'Saffron', 'Sky Blue', 'Titanium White']);
+                        'Purple', 'Saffron', 'Sky Blue', 'Titanium White']);
     }),
 
     knex.schema.createTable('certs', function(t){
       t.increments('cid').primary();
       t.enu('type', ['Acrobat', 'Aviator', 'Goalkeeper', 'Guardian', 'Juggler', 'Paragon', 'Playmaker', 'Scorer', 
-                          'Show-Off', 'Sniper', 'Striker', 'Sweeper', 'Tactician', 'Turtle', 'Victor']);
+                        'Show-Off', 'Sniper', 'Striker', 'Sweeper', 'Tactician', 'Turtle', 'Victor']);
       t.enu('track', ['Bicycle Goals', 'Aerial Goals', 'Saves', 'Epic Saves', 'Juggles', 'MVP', 'Assists', 'Goals',
-                            'Backwards Goals', 'Long Goals', 'Shots On Goal', 'Clear Balls', 'Center Balls', 'Turtle Goals', 'Wins']);
+                        'Backwards Goals', 'Long Goals', 'Shots On Goal', 'Clear Balls', 'Center Balls', 'Turtle Goals', 'Wins']);
     })
   ]);
 };
