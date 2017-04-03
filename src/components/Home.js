@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import UserStore from '../containers/UserStore';
+
 class Home extends Component {
   componentWillMount(){
    // this.props.dispatch(getUserItems());
@@ -9,9 +11,11 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {this.props.isLoggedIn 
-          ? <p>You're logged in! {this.props.uid}</p> 
-          : <p>Home. Please log in to modify your garage.</p>}
+        {
+          this.props.isLoggedIn 
+          ? <UserStore /> 
+          : <p>Home. Please log in to modify your garage.</p>
+        }
       </div>
     );
   }

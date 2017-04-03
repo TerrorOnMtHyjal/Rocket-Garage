@@ -1,51 +1,48 @@
-export const USER_ITEMS_REQUEST = 'USER_ITEMS_REQUEST';
-export const USER_ITEMS_SUCCESS = 'USER_ITEMS_SUCCESS';
-export const USER_ITEMS_ERROR = 'USER_ITEMS_ERROR';
+export const ITEMS_GET_REQUEST = 'ITEMS_GET_REQUEST';
+export const ITEMS_GET_SUCCESS = 'ITEMS_GET_SUCCESS';
+export const ITEMS_GET_ERROR = 'ITEMS_GET_ERROR';
 export const UPDATE_LOGIN_STATUS = 'UPDATE_LOGIN_STATUS';
 import cookie from 'react-cookie';
 
-export const getUserItems = (username) => dispatch => {
-    const opts = {
-      headers : {
-        Authorization : `JWT ${cookie.load('accessToken')}`
-      }
+export const getItems = (username = undefined) => dispatch => {
+  const opts = { headers : { Authorization : `JWT ${cookie.load('accessToken')}` } };
+  const itemsType = username ? "store" : "user";
+  
+  dispatch(itemsGetRequest());
+  fetch(username ? `/api/items/${username}` : '/api/items', opts)
+  .then(response => {
+    if(!response.ok) {
+      throw new Error(response.statusText);
     }
-    console.log(opts);
-    console.log("getting items!");
-    dispatch(requestUserItems());
-    return fetch(`/api/items/${username}`, opts)
-    .then(response => {
-      if(!response.ok) {
-        throw new Error(response.statusText);
-      }
-      return response.json();
-    })
-    .then(userItems => {
-      dispatch(successUserItems(userItems));
-    })
-    .catch(err => {
-      dispatch(errorUserItems(err));
-    });
+    return response.json();
+  })
+  .then(items => {
+    dispatch(itemsGetSuccess(items, itemsType));
+  })
+  .catch(err => {
+    dispatch(itemsGetError(err));
+  });
 }
 
-function requestUserItems() {
+function itemsGetRequest() {
   return {
-    type : USER_ITEMS_REQUEST,
+    type : ITEMS_GET_REQUEST,
     isFetching : true
   };
 }
 
-function successUserItems(userItems) {
+function itemsGetSuccess(items, itemsType) {
   return {
-    type : USER_ITEMS_SUCCESS,
+    type : ITEMS_GET_SUCCESS,
     isFetching : false,
-    userItems
+    items,
+    itemsType
   };
 }
 
-function errorUserItems(err) {
+function itemsGetError(err) {
   return {
-    type : USER_ITEMS_ERROR,
+    type : ITEMS_GET_ERROR,
     isFetching : false,
     err
   };

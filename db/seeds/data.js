@@ -727,16 +727,16 @@ const data = {
   userItems : [
     {
       user_id : 1,
-      item : 1                               //alchemist wheel
+      item : 1
     },
     {
-      user_id : 1,
-      item : 467,                             //bowler topper
-      paint : 3,                              //cobalt
-      cert : 5                                //juggler
+      user_id : 2,
+      item : 467,
+      paint : 3,
+      cert : 5
     },
     {
-      user_id : 1,
+      user_id : 3,
       item : 472,
       paint : 7,
       cert : 3
@@ -823,6 +823,14 @@ const data = {
     {
       steamID : '76561198050470061',
       username : 'dustwise'
+    },
+    {
+      steamID : '76561198050470062',
+      username : 'jared'
+    },
+    {
+      steamID : '76561198050470063',
+      username : 'bridget'
     }
   ]
 };

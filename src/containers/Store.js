@@ -3,10 +3,10 @@ import { getItems } from '../actions/actions';
 import { connect } from 'react-redux';
 import ItemList from '../components/ItemList';
 
-class UserStore extends Component {
+class Store extends Component {
 
   componentWillMount() {
-    this.props.dispatch(getItems());
+    this.props.dispatch(getItems(this.props.match.params.username));
   }
 
   componentDidMount() {
@@ -23,7 +23,7 @@ class UserStore extends Component {
 }
 
 const mapState = (state) => {
-  return { items: state.userState.userItems };
+  return { items: state.userState.storeItems };
 };
 
-export default connect(mapState)(UserStore);
+export default connect(mapState)(Store);
