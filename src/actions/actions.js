@@ -6,7 +6,7 @@ import cookie from 'react-cookie';
 
 export const getStore = (username = undefined) => dispatch => {
   const opts = { headers : { Authorization : `JWT ${cookie.load('accessToken')}` } };
-  const storeType = username ? "store" : "user";
+  const storeType = username ? "viewedStore" : "userStore";
   
   dispatch(storeGetRequest());
   fetch(username ? `/api/stores/${username}` : '/api/stores', opts)
@@ -17,8 +17,7 @@ export const getStore = (username = undefined) => dispatch => {
     return response.json();
   })
   .then(store => {
-    console.log(store)
-    dispatch(storeGetSuccess(store));
+    dispatch(storeGetSuccess(store, storeType));
   })
   .catch(err => {
     dispatch(storeGetError(err));
@@ -32,11 +31,12 @@ function storeGetRequest() {
   };
 }
 
-function storeGetSuccess(store) {
+function storeGetSuccess(store, storeType) {
   return {
     type : STORE_GET_SUCCESS,
     isFetching : false,
-    store
+    store,
+    storeType
   };
 }
 

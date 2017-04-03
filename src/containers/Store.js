@@ -16,16 +16,25 @@ class Store extends Component {
   render() {
     return (
       <div>
-        {/*<h1>{this.props.store.header}</h1>
-        <h3>{this.props.store.subheader}</h3>*/}
-        <ItemList items={this.props.items}/>
+        {this.props.store 
+          ? ( 
+              <div>
+                <h1>{this.props.store.header}</h1>
+                <h3>{this.props.store.subheader}</h3>
+                <i><p>Platform: {this.props.store.platform}</p></i>
+                <ItemList items={this.props.store.items}/>
+              </div>
+            )
+          : undefined
+        }
+        
       </div>
     );
   }
 }
 
 const mapState = (state) => {
-  return { items: state.userState.storeItems };
+  return { store: state.userState.viewedStores[0] };
 };
 
 export default connect(mapState)(Store);
