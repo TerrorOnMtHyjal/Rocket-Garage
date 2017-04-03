@@ -20,7 +20,7 @@ module.exports = (app, express, passport) => {
   itemsRouter.get('/', 
     passport.authenticate('jwt', { session : false }), 
     (req, res) => {
-      getItems( res.user[0].uid )
+      getItems(res.user[0].uid)
       .then(items => {
         res.json(items);
       });
