@@ -2,13 +2,16 @@ export const USER_ITEMS_REQUEST = 'USER_ITEMS_REQUEST';
 export const USER_ITEMS_SUCCESS = 'USER_ITEMS_SUCCESS';
 export const USER_ITEMS_ERROR = 'USER_ITEMS_ERROR';
 export const UPDATE_LOGIN_STATUS = 'UPDATE_LOGIN_STATUS';
+import cookie from 'react-cookie';
 
 export const getUserItems = (username) => dispatch => {
     const opts = {
       headers : {
-        Authorization : `JWT ${document.cookie.split('=')[1]}`
+        Authorization : `JWT ${cookie.load('accessToken')}`
       }
     }
+    console.log(opts);
+    console.log("getting items!");
     dispatch(requestUserItems());
     return fetch(`/api/items/${username}`, opts)
     .then(response => {

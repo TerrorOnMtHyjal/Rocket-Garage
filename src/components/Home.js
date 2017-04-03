@@ -10,7 +10,7 @@ class Home extends Component {
     return (
       <div>
         {this.props.isLoggedIn 
-          ? <p>You're logged in!</p> 
+          ? <p>You're logged in! {this.props.uid}</p> 
           : <p>Home. Please log in to modify your garage.</p>}
       </div>
     );

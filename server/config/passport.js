@@ -2,8 +2,6 @@ const passportJWT       = require('passport-jwt'),
       SteamStrategy     = require('passport-steam'),
       jwt               = require('jsonwebtoken'),
       session           = require('express-session'),
-      path              = require('path'),
-      util              = require('util'),
       db                = require ('../../db/db');
 
 const ExtractJwt        = passportJWT.ExtractJwt,
@@ -29,6 +27,7 @@ module.exports = (passport) => {
       },
 
       (identifier, profile, done) => {
+        console.log("it's me! steam!")
         profile.identifier = identifier;
         return done(null, profile);
       }
@@ -41,7 +40,8 @@ module.exports = (passport) => {
         secretOrKey : 'testSecret123' 
       }, 
     
-      (jwt_payload, next) => {       
+      (jwt_payload, next) => {
+        console.log("it's me! jwt! ", jwt_payload)       
         db('users')
         .where('steamID', '=', jwt_payload.steamID)
         .then(user => {

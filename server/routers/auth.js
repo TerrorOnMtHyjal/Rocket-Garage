@@ -14,8 +14,9 @@ module.exports = (app, express, passport) => {
     passport.authenticate('steam', { failureRedirect: '/'}),
     (req, res) => {
       findOrCreateUser(req.user._json.steamid).then(user => {
-        res.cookie('accessToken', generateJWT(user[0]));
-        res.cookie('uid', payload.uid);
+        const payload = user[0];      
+        res.cookie('accessToken', generateJWT(payload));
+        res.cookie('uid', payload.uid);  //neccesary?
         res.redirect(`/`);
       });
     }
