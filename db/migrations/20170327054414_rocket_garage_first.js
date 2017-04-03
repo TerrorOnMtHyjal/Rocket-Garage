@@ -2,56 +2,74 @@ exports.up = function(knex, Promise) {
 
   return Promise.all([
 
-    knex.schema.createTable('users', function(table){
-      table.increments('uid').primary();
-      table.string('steamID')
+    knex.schema.createTable('users', (t) => {
+      t.increments('uid').primary();
+      t.string('steamID')
             .unique();
-      table.string('username')
+      t.string('username')
             .unique();
-      table.boolean('donator')
+      t.boolean('donator')
             .defaultTo(false);
-      table.enu('platform', ['PS4', 'PC', 'Xbox']);
+      t.enu('primaryPlatform', ['PS4', 'PC', 'XB1']);
     }),
 
-    knex.schema.createTable('user_items', function(table){
-      table.increments('uiid').primary();
-      table.integer('user_id')
+    knex.schema.createTable('stores', t => {
+      t.increments('sid').primary();
+      t.integer('user_id')
             .references('uid')
             .inTable('users');
-      table.integer('item')
+      t.string('header')
+            .defaultTo("Set your store header!");
+      t.string('subheader')
+            .defaultTo('Set your store tagline, or leave it empty!');
+      t.boolean('primaryStore')
+            .defaultTo(false);
+      t.enu('platform', ['PS4', 'PC', 'XB1']);
+    }),
+
+    knex.schema.createTable('user_items', (t) => {
+      t.increments('uiid').primary();
+      t.integer('store_id')
+            .references('sid')
+            .inTable('stores');
+      t.integer('user_id')
+            .references('uid')
+            .inTable('users');
+      t.integer('item')
             .references('iid')
             .inTable('items');
-      table.integer('paint')
+      t.integer('paint')
             .nullable()
             .references('pid')
             .inTable('paints');
-      table.integer('cert')
+      t.integer('cert')
             .nullable()
             .references('cid')
             .inTable('certs');
-      table.boolean('promoted')
+      t.boolean('promoted')
             .defaultTo(false);
+      t.enu('postType', ["have", "want"]);
     }),
 
-    knex.schema.createTable('items', function(table){
-      table.increments('iid').primary();
-      table.string('name');
-      table.string('rarity');
-      table.string('body_type');
-      table.enu('type', ['wheel', 'body', 'decal', 'boost', 'topper']);
+    knex.schema.createTable('items', (t) => {
+      t.increments('iid').primary();
+      t.string('name');
+      t.string('rarity');
+      t.string('body_type');
+      t.enu('type', ['wheel', 'body', 'decal', 'boost', 'topper']);
     }),
 
-    knex.schema.createTable('paints', function(table){
-      table.increments('pid').primary();
-      table.enu('color', ['Black', 'Burnt Sienna', 'Cobalt', 'Crimson', 'Forest Green', 'Grey', 'Lime', 'Orange', 'Pink',
+    knex.schema.createTable('paints', (t) => {
+      t.increments('pid').primary();
+      t.enu('color', ['Black', 'Burnt Sienna', 'Cobalt', 'Crimson', 'Forest Green', 'Grey', 'Lime', 'Orange', 'Pink',
                             'Purple', 'Saffron', 'Sky Blue', 'Titanium White']);
     }),
 
-    knex.schema.createTable('certs', function(table){
-      table.increments('cid').primary();
-      table.enu('type', ['Acrobat', 'Aviator', 'Goalkeeper', 'Guardian', 'Juggler', 'Paragon', 'Playmaker', 'Scorer', 
+    knex.schema.createTable('certs', function(t){
+      t.increments('cid').primary();
+      t.enu('type', ['Acrobat', 'Aviator', 'Goalkeeper', 'Guardian', 'Juggler', 'Paragon', 'Playmaker', 'Scorer', 
                           'Show-Off', 'Sniper', 'Striker', 'Sweeper', 'Tactician', 'Turtle', 'Victor']);
-      table.enu('track', ['Bicycle Goals', 'Aerial Goals', 'Saves', 'Epic Saves', 'Juggles', 'MVP', 'Assists', 'Goals',
+      t.enu('track', ['Bicycle Goals', 'Aerial Goals', 'Saves', 'Epic Saves', 'Juggles', 'MVP', 'Assists', 'Goals',
                             'Backwards Goals', 'Long Goals', 'Shots On Goal', 'Clear Balls', 'Center Balls', 'Turtle Goals', 'Wins']);
     })
   ]);
@@ -63,6 +81,7 @@ exports.down = function(knex, Promise) {
     knex.schema.dropTable('items'),
     knex.schema.dropTable('paints'),
     knex.schema.dropTable('certs'),
+    knex.schema.dropTable('stores'),
     knex.schema.dropTable('users')
   ]);
 };

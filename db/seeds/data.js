@@ -727,19 +727,44 @@ const data = {
   userItems : [
     {
       user_id : 1,
-      item : 1
+      item : 1,
+      postType : "have",
+      store_id : 1
+    },
+    {
+      user_id : 1,
+      item : 466,
+      paint : 2,
+      postType : "have",
+      store_id : 1
+    },
+    {
+      user_id : 1,
+      item : 237,
+      postType : "want",
+      store_id : 1
     },
     {
       user_id : 2,
       item : 467,
       paint : 3,
-      cert : 5
+      cert : 5,
+      postType : "have",
+      store_id : 2
+    },
+    {
+      user_id : 2,
+      item : 122,
+      postType : "want",
+      store_id : 2
     },
     {
       user_id : 3,
       item : 472,
       paint : 7,
-      cert : 3
+      cert : 3,
+      postType : "have",
+      store_id : 3
     }
   ],
   paints : [
@@ -831,6 +856,29 @@ const data = {
     {
       steamID : '76561198050470063',
       username : 'bridget'
+    }
+  ],
+  stores : [
+    {
+      user_id : 1,
+      header : "Welcome to Dustwise's Bargain Bin!",
+      subheader : "All wheels half off until May.",
+      platform : "PC",
+      primaryStore : true
+    },
+    {
+      user_id : 2,
+      header : "Jared's Rocket Garage",
+      subheader : "You know you want what I gots! Make me an offer, playa.",
+      platform : "PC",
+      primaryStore : true
+    },
+    {
+      user_id : 3,
+      header : "Bridget's Rocket-y Goods",
+      subheader : "I think some of this is good stuff?",
+      platform : "PS4",
+      primaryStore : true
     }
   ]
 };
