@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import cookie from 'react-cookie';
 
 import { updateLoginStatus } from '../actions/actions';
-import UserStore from './UserStore';
 import Store from './Store';
 import Home from '../components/Home';
 import TopBar from '../components/TopBar'
