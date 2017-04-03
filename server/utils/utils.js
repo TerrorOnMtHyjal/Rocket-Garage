@@ -13,7 +13,8 @@ const storeDefinition = [{
     color : 'color',
     cert : 'cert',
     uiid : 'uiid',
-    type : 'type'
+    itemType : 'itemType',
+    postType : 'postType'
   }]
 }];
 
@@ -59,6 +60,6 @@ exports.getStores = (uid) => {
   .leftOuterJoin('paints', 'user_items.paint', '=', 'paints.pid')
   .leftOuterJoin('certs', 'user_items.cert', '=', 'certs.cid')
   .select('stores.header as header', 'stores.subheader as subheader', 'stores.platform as platform', 'stores.primaryStore as primaryStore', 
-          'items.name as name', 'paints.color as color', 'certs.type as cert', 'user_items.uiid as uiid', 'items.type as type')
+          'items.name as name', 'paints.color as color', 'certs.type as cert', 'user_items.uiid as uiid', 'items.type as itemType', 'user_items.postType as postType')
   .then(data => nest.nest(data, storeDefinition))
 }           

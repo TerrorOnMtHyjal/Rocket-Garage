@@ -10,6 +10,8 @@ const initialState= {
   viewedStores : {
     items : []
   },
+  activeUserItemType : "have",
+  activeStoreItemType : "have",
   uid : null
 }
 
@@ -22,6 +24,12 @@ export default function userItems(state=initialState, action){
         return {...state, viewedStores : action.store};
       }
         return {...state, userStores : action.store};
+    case actions.UPDATE_ITEMS_TYPE:
+      if( action.storeType === "viewedStore") {
+        return {...state, activeStoreItemType : action.value}
+      }
+
+      return {...state, activeUserItemType : action.value}
     default:
       return state;
   }

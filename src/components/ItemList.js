@@ -5,11 +5,14 @@ export default class ItemList extends Component{
 
   render(){
     const items = this.props.items;
-
+    const itemsType = this.props.itemsType;
+    console.log(itemsType);
     return (
       <div className="itemListContainer">
         {items.map((item) => {
-          return <Item key={item.uiid} details={item}/>
+          if(itemsType === item.postType){
+            return <Item key={item.uiid} details={item}/>
+          }
         })}
       </div>
     );

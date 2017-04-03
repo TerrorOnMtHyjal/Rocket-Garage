@@ -1,6 +1,8 @@
 export const STORE_GET_REQUEST = 'STORE_GET_REQUEST';
 export const STORE_GET_SUCCESS = 'STORE_GET_SUCCESS';
 export const STORE_GET_ERROR = 'STORE_GET_ERROR';
+
+export const UPDATE_ITEMS_TYPE = 'UPDATE_ITEMS_TYPE';
 export const UPDATE_LOGIN_STATUS = 'UPDATE_LOGIN_STATUS';
 import cookie from 'react-cookie';
 
@@ -46,6 +48,14 @@ function storeGetError(err) {
     isFetching : false,
     err
   };
+}
+
+export const updateItemsType = (value, storeType) => {
+  return {
+    type : UPDATE_ITEMS_TYPE,
+    value,
+    storeType
+  }
 }
 
 export const updateLoginStatus = (isLoggedInValue, uid) => {
