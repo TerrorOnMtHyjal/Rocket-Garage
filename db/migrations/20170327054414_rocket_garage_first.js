@@ -4,8 +4,13 @@ exports.up = function(knex, Promise) {
 
     knex.schema.createTable('users', function(table){
       table.increments('uid').primary();
-      table.string('steamID').unique();
-      table.string('username').unique();
+      table.string('steamID')
+            .unique();
+      table.string('username')
+            .unique();
+      table.boolean('donator')
+            .defaultTo(false);
+      table.enu('platform', ['PS4', 'PC', 'Xbox']);
     }),
 
     knex.schema.createTable('user_items', function(table){
@@ -24,25 +29,30 @@ exports.up = function(knex, Promise) {
             .nullable()
             .references('cid')
             .inTable('certs');
+      table.boolean('promoted')
+            .defaultTo(false);
     }),
 
     knex.schema.createTable('items', function(table){
       table.increments('iid').primary();
       table.string('name');
-      table.string('type');
       table.string('rarity');
       table.string('body_type');
+      table.enu('type', ['wheel', 'body', 'decal', 'boost', 'topper']);
     }),
 
     knex.schema.createTable('paints', function(table){
       table.increments('pid').primary();
-      table.string('color').unique();
+      table.enu('color', ['Black', 'Burnt Sienna', 'Cobalt', 'Crimson', 'Forest Green', 'Grey', 'Lime', 'Orange', 'Pink',
+                            'Purple', 'Saffron', 'Sky Blue', 'Titanium White']);
     }),
 
     knex.schema.createTable('certs', function(table){
       table.increments('cid').primary();
-      table.string('type').unique();
-      table.string('track');
+      table.enu('type', ['Acrobat', 'Aviator', 'Goalkeeper', 'Guardian', 'Juggler', 'Paragon', 'Playmaker', 'Scorer', 
+                          'Show-Off', 'Sniper', 'Striker', 'Sweeper', 'Tactician', 'Turtle', 'Victor']);
+      table.enu('track', ['Bicycle Goals', 'Aerial Goals', 'Saves', 'Epic Saves', 'Juggles', 'MVP', 'Assists', 'Goals',
+                            'Backwards Goals', 'Long Goals', 'Shots On Goal', 'Clear Balls', 'Center Balls', 'Turtle Goals', 'Wins']);
     })
   ]);
 };
