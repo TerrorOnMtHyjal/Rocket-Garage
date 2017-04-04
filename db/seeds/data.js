@@ -873,34 +873,34 @@ const data = {
       username : 'bridget'
     }
   ],
-  stores : [
+  garages : [
     {
       user_id : 1,
       header : "Welcome to Dustwise's Bargain Bin!",
       subheader : "All wheels half off until May.",
       platform : "PC",
-      primaryStore : true
+      primaryGarage : true
     },
     {
       user_id : 2,
       header : "Jared's Rocket Garage",
       subheader : "You know you want what I gots! Make me an offer, playa.",
       platform : "PC",
-      primaryStore : true
+      primaryGarage : true
     },
     {
       user_id : 3,
       header : "Bridget's Rocket-y Goods",
       subheader : "I think some of this is good stuff?",
       platform : "PS4",
-      primaryStore : true
+      primaryGarage : true
     },
     {
       user_id : 1,
       header : "Ol' Dusty's Second Shop!",
       subheader : "Have a look around. And of course this one is PC as well!",
       platform : "PC",
-      primaryStore : false
+      primaryGarage : false
     }
   ]
 };

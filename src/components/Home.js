@@ -11,11 +11,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {
-          this.props.isLoggedIn 
-          ? <UserStore /> 
-          : <p>Home. Please log in to modify your garage.</p>
-        }
+        <p>Welcome to the home page.</p>
       </div>
     );
   }

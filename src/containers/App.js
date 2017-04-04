@@ -7,7 +7,8 @@ import jwtDecode from 'jwt-decode';
 import { loginUser } from '../actions/actions';
 import Store from './Store';
 import Home from '../components/Home';
-import TopBar from '../components/TopBar'
+import MyGarage from '../components/MyGarage';
+import TopBar from '../components/TopBar';
 
 class App extends Component {
 
@@ -25,8 +26,8 @@ class App extends Component {
         <TopBar isLoggedIn={this.props.isLoggedIn}/>
         <Router>
           <div>
-            <Route exact path="/" render={ () => <Home uid={ this.props.uid } isLoggedIn={ this.props.isLoggedIn }/> }/>
-            {/*<Route exact path="/" render={ () => <UserGarage uid={ this.props.uid } isLoggedIn={ this.props.isLoggedIn }/> }/>*/}
+            <Route exact path="/" render={ () => <Home/> }/>
+            <Route exact path="/" render={ () => <UserGarage uid={ this.props.uid } isLoggedIn={ this.props.isLoggedIn }/> }/>
             <Route exact path="/:username" component={ Store }/>
           </div>
         </Router>

@@ -13,25 +13,25 @@ exports.up = function(knex, Promise) {
       t.enu('primaryPlatform', ['PS4', 'PC', 'XB1']);
     }),
 
-    knex.schema.createTable('stores', t => {
-      t.increments('sid').primary();
+    knex.schema.createTable('garages', t => {
+      t.increments('gid').primary();
       t.integer('user_id')
             .references('uid')
             .inTable('users');
       t.string('header')
-            .defaultTo("Set your store header!");
+            .defaultTo("Set your garage header!");
       t.string('subheader')
-            .defaultTo('Set your store tagline, or leave it empty!');
-      t.boolean('primaryStore')
+            .defaultTo('Set your garage tagline, or leave it empty!');
+      t.boolean('primaryGarage')
             .defaultTo(false);
       t.enu('platform', ['PS4', 'PC', 'XB1']);
     }),
 
     knex.schema.createTable('user_items', (t) => {
       t.increments('uiid').primary();
-      t.integer('store_id')
-            .references('sid')
-            .inTable('stores');
+      t.integer('garage_id')
+            .references('gid')
+            .inTable('garages');
       t.integer('user_id')
             .references('uid')
             .inTable('users');
@@ -81,7 +81,7 @@ exports.down = function(knex, Promise) {
     knex.schema.dropTable('items'),
     knex.schema.dropTable('paints'),
     knex.schema.dropTable('certs'),
-    knex.schema.dropTable('stores'),
+    knex.schema.dropTable('garages'),
     knex.schema.dropTable('users')
   ]);
 };

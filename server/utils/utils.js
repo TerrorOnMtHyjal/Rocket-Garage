@@ -3,7 +3,8 @@ const nest = require('nesthydrationjs')();
 const db  = require ('../../db/db'),
       jwt = require('jsonwebtoken');
 
-const storeDefinition = [{
+const garageDefinition = [{
+  gid : 'gid',
   header : 'header',
   subheader : 'subheader',
   platform : 'platform',
@@ -52,14 +53,14 @@ exports.getItems = (uid) => {
   .select('items.name as name', 'paints.color as color', 'certs.type as cert', 'user_items.uiid as uiid')
 }
 
-exports.getStores = (uid) => {
-  return db('stores')
-  .where('stores.user_id', '=', uid)
-  .join('user_items', 'user_items.store_id', '=', 'stores.sid')
+exports.getGarages = (uid) => {
+  return db('garages')
+  .where('garages.user_id', '=', uid)
+  .join('user_items', 'user_items.garage_id', '=', 'garages.gid')
   .join('items', 'user_items.item', '=', 'items.iid')
   .leftOuterJoin('paints', 'user_items.paint', '=', 'paints.pid')
   .leftOuterJoin('certs', 'user_items.cert', '=', 'certs.cid')
-  .select('stores.header as header', 'stores.subheader as subheader', 'stores.platform as platform', 'stores.primaryStore as primaryStore', 
+  .select('garages.header as header', 'garages.subheader as subheader', 'garages.platform as platform', 'garages.primaryStore as primaryStore', 'garages.gid as gid',
           'items.name as name', 'paints.color as color', 'certs.type as cert', 'user_items.uiid as uiid', 'items.type as itemType', 'user_items.postType as postType')
-  .then(data => nest.nest(data, storeDefinition))
+  .then(data => nest.nest(data, garageDefinition))
 }           
