@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Garage extends Component {
+export default class Garage extends Component {
 
   componentWillMount() {
   }
@@ -11,14 +11,8 @@ class Garage extends Component {
   render() {
     return (
       <div>
+        <p>Viewed Garage</p>
       </div>
     );
   }
 }
-
-const mapState = (state) => {
-  return { 
-  };
-};
-
-export default connect()(Garage);

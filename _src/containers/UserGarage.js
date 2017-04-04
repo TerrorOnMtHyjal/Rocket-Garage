@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Garage from './Garage';
 
-class UserGarage extends Component {
+export default class UserGarage extends Component {
 
   componentWillMount() {
   }
@@ -13,10 +13,9 @@ class UserGarage extends Component {
   render() {
     return (
       <div>
-        <Garage />  
+        <p>User Garage</p>
+        <Garage /> 
       </div>
     );
   }
 }
-
-export default connect()(UserGarage);

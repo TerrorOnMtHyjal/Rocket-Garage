@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import appState from './appState';
-import garageState from './garagesState';
+import appState from './reducer_app_state';
+import garageState from './reducer_garages_state';
 
 const rootReducer = combineReducers({ appState, garageState });
 
