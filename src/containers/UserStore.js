@@ -36,7 +36,6 @@ class UserStore extends Component {
 }
 
 const mapState = (state) => {
-  console.log(state)
   return { 
     store: state.userState.userStores[0],
     itemsType : state.userState.activeUserItemType

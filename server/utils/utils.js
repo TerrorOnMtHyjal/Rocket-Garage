@@ -20,16 +20,16 @@ const storeDefinition = [{
 
 exports.findOrCreateUser = (userSteamID) => {
   return db('users')
-  .select('steamID', 'uid')
+  .select('steamID', 'uid', 'username')
   .where('steamID', "=", userSteamID)
   .then(user => {
     if(user.length != 1){
       console.log("User not found, making a new one!");
       return db('users')
-      .insert({ steamID : userSteamID }, ['uid', 'steamID']);
+      .insert({ steamID : userSteamID }, ['uid', 'steamID', 'username']);
     }
     console.log("User found!");
-    return [{ uid : user[0].uid, steamID : user[0].steamID }];
+    return [{ uid : user[0].uid, steamID : user[0].steamID, username : user[0].username }];
   })
 }
 

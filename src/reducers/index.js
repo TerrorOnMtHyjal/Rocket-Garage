@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import userState from './reducer_user_state';
+import appState from './reducer_app_state';
+import storeState from './reducer_stores_state';
 
-const rootReducer = combineReducers({ userState });
+const rootReducer = combineReducers({ appState});
 
 export default rootReducer;

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import cookie from 'react-cookie';
+import jwtDecode from 'jwt-decode';
 
-import { updateLoginStatus } from '../actions/actions';
+import { loginUser } from '../actions/actions';
 import Store from './Store';
 import Home from '../components/Home';
 import TopBar from '../components/TopBar'
@@ -12,7 +13,9 @@ class App extends Component {
 
   componentWillMount(){
     if(cookie.load('accessToken') && this.props.isLoggedIn === false){
-      this.props.dispatch(updateLoginStatus(true, cookie.load('uid')));
+      console.log("why this running")
+      const { uid, steamID, username } = jwtDecode(cookie.load('accessToken'));
+      this.props.dispatch(loginUser(uid, steamID, username));
     }
   }
 
@@ -22,8 +25,9 @@ class App extends Component {
         <TopBar isLoggedIn={this.props.isLoggedIn}/>
         <Router>
           <div>
-            <Route exact path="/" render={() => <Home uid={this.props.uid} isLoggedIn={this.props.isLoggedIn}/>}/>
-            <Route exact path="/:username" component={Store}/>
+            <Route exact path="/" render={ () => <Home uid={ this.props.uid } isLoggedIn={ this.props.isLoggedIn }/> }/>
+            {/*<Route exact path="/" render={ () => <UserGarage uid={ this.props.uid } isLoggedIn={ this.props.isLoggedIn }/> }/>*/}
+            <Route exact path="/:username" component={ Store }/>
           </div>
         </Router>
       </div>
@@ -32,9 +36,10 @@ class App extends Component {
 }
 
 const mapState = (state) => {
+  console.log(state)
   return {
-    isLoggedIn : state.userState.isLoggedIn,
-    uid : state.userState.uid
+    isLoggedIn : state.appState.isLoggedIn,
+    uid : state.appState.uid
   }
 }
 

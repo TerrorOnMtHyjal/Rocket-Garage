@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateLoginStatus } from '../actions/actions';
+import { logoutUser } from '../actions/actions';
 import cookie from 'react-cookie';
 
 class TopBar extends Component {
-  logOutUser(){
+  purgeUser(){
     cookie.remove('accessToken');
-    this.props.dispatch(updateLoginStatus(false));
+    this.props.dispatch(logoutUser());
   }
+  
   render() {
     return (
       <div>
-       {this.props.isLoggedIn ? <button onClick={() => this.logOutUser()}>Logout</button> : <a href="/api/auth">Login With Steam</a>}
+       {this.props.isLoggedIn ? <button onClick={() => this.purgeUser()}>Logout</button> : <a href="/api/auth">Login With Steam</a>}
       </div>
     );
   }
