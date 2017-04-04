@@ -5,16 +5,17 @@ const Links = (props) => (
   <nav>
     <Link to="/">Home</Link>
     <Link to="/edit">My Garage</Link>
-    {props.isLoggedIn === true
+
+    {props.loggedIn === true
     ? <Link to="/logout">Logout</Link>
-    : <Link to="/api/auth">Login</Link>
+    : <a href="/api/auth">Login</a>
     }
   </nav>
 );
 
 const LinksRoutes = (props) => (
   <div>
-    <Links isLoggedIn={props.isLoggedIn}/>
+    <Links loggedIn={props.loggedIn}/>
     <Switch>
       <Route exact path="/" render={ () => <h1>Home Page</h1> }/>
       <Route path="/edit" render={ () => <h1>My Garage</h1> }/>
@@ -26,7 +27,7 @@ const LinksRoutes = (props) => (
 
 const RouterApp = (props) => (
   <Router>
-    <LinksRoutes isLoggedIn={props.isLoggedIn}/>
+    <LinksRoutes loggedIn={props.loggedIn}/>
   </Router>
 );
 

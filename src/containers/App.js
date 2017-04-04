@@ -6,10 +6,17 @@ import jwtDecode from 'jwt-decode';
 
 import RouterApp from './RouterApp';
 
+const loggedIn = false;
+
 export default class App extends Component {
+  componentWillMount(){
+    cookie.load('accessToken')
+    ? loggedIn = true
+    : loggedIn = false
+  }
   render() {
     return (
-      <RouterApp isLoggedIn={false}/>
+      <RouterApp loggedIn={loggedIn}/>
     );
   }
 }
