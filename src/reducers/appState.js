@@ -1,7 +1,7 @@
-import * as actions from '../actions/actions';
+import * as actions from '../actions/actions'
 
 const initialState= {
-  isLoggedIn : false,
+  isLoggedIn : true,
   isFetching : false,
   userDetails : {
     uid : undefined,
@@ -13,15 +13,11 @@ const initialState= {
 export default function appState(state=initialState, action){
   switch (action.type){
     case actions.LOGIN_USER:
-      const newUserDetails = {
-        uid : action.uid,
-        username : action.username,
-        steamID : action.steamID
-      }
-      return { ...state, isLoggedIn : true, userDetails : newUserDetails };
+      return { ...state, isLoggedIn : true};
     case actions.LOGOUT_USER:
-      return { ...state, isLoggedIn : false, userDetails : initialState.userDetails };
+      return { ...state, isLoggedIn : false};
     default:
+      console.log("default")
       return state;
   }
 }
