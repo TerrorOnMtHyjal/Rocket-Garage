@@ -5,15 +5,24 @@ import { loginUser } from '../actions/actions';
 
 class Login extends Component {
   componentWillMount(){
-    this.props.dispatch(loginUser());
+
   }
 
   componentDidMount(){
-    this.props.history.push("/");
+    
+    if(this.props.loggedIn){
+      console.log("you're already logged in!");
+      this.props.history.push("/");
+    }
   }
   
   render() {
-    return null;
+    return (
+      <div>
+        <a href="api/auth">Login With Steam</a><br />
+        <a href="#">Login With Email</a>
+      </div>
+    );
   }
 }
 

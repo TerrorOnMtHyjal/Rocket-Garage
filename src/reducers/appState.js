@@ -1,7 +1,7 @@
 import * as actions from '../actions/actions'
 
 const initialState= {
-  isLoggedIn : true,
+  isLoggedIn : false,
   isFetching : false,
   userDetails : {
     uid : undefined,
@@ -17,7 +17,6 @@ export default function appState(state=initialState, action){
     case actions.LOGOUT_USER:
       return { ...state, isLoggedIn : false};
     default:
-      console.log("default")
       return state;
   }
 }
