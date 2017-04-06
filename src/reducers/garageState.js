@@ -1,38 +1,54 @@
-//import * as actions from '../actions/actions';
+import * as actions from '../actions/actions';
 
-const initialState= {
-  garages : {
-    user : {
-      uid : undefined,
-      username :undefined,
-      steamID : undefined,
-      primary : {
-        gid : undefined,
-        items : [],
-        activeItemType : "have",
-        header : undefined,
-        subheader : undefined,
-        platform : undefined
-      },
-      secondary : {}
+const _initialState= {
+  user : {
+    primary : {
+      gid : undefined,
+      items : [],
+      activeItemType : "have",
+      header : undefined,
+      subheader : undefined,
+      platform : undefined
     },
-    viewed : {
-      uid : undefined,
-      username :undefined,
-      steamID : undefined,
-      primary : {
-        gid : undefined,
-        items : [],
-        activeItemType : "have",
-        header : undefined,
-        subheader : undefined,
-        platform : undefined
-      },
-      secondary : {}
-    }
+    secondary : []
+  },
+  viewed : {
+    uid : undefined,
+    username :undefined,
+    steamID : undefined,
+    primary : {
+      gid : undefined,
+      items : [],
+      activeItemType : "have",
+      header : undefined,
+      subheader : undefined,
+      platform : undefined
+    },
+    secondary : []
   }
 }
 
+const initialState = {
+  user : {},
+  viewed : {}
+};
+
 export default function garagesState(state=initialState, action){
-  return state;
+  switch (action.type){
+    case actions.GARAGES_GET_SUCCESS:
+      const newState = { ...state };
+
+      if(action.isUserGarage){
+        newState.user = action.garages;
+        return newState;
+      }      
+      newState.viewed = action.garages;
+
+      return newState;
+    case actions.LOGOUT_USER:
+    
+      return { ...state, user : {} };
+    default:
+      return state;
+  }
 }

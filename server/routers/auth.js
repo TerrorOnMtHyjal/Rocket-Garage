@@ -1,4 +1,4 @@
-import { findOrCreateUser, generateJWT } from '../utils/utils';
+import { findOrCreateUser, generateJWT, getGarages } from '../utils/utils';
 
 module.exports = (app, express, passport) => {
   const authRouter = express.Router();
@@ -13,12 +13,11 @@ module.exports = (app, express, passport) => {
   authRouter.get('/return', 
     passport.authenticate('steam', { failureRedirect: '/'}),
     (req, res) => {
-      findOrCreateUser(req.user._json.steamid).then(user => {
-        console.log(user);
-        const payload = user[0];      
-        res.cookie('accessToken', generateJWT(payload));
+      findOrCreateUser(req.user._json.steamid)
+      .then(user => {
+        res.cookie('accessToken', generateJWT(user[0]));
         res.redirect(`/login`);
-      });
+      })
     }
   );
 

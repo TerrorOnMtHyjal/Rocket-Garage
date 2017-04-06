@@ -1,23 +1,26 @@
 import * as actions from '../actions/actions';
 import cookie from 'react-cookie';
+import jwtDecode from 'jwt-decode';
+
 
 const initialState= {
   isLoggedIn : cookie.load('accessToken') ? true : false,
-  accessToken : cookie.load('accessToken'),
+  accessToken : cookie.load('accessToken') ? cookie.load('accessToken') : undefined,
   isFetching : false,
-  userDetails : {
-    uid : undefined,
-    username : undefined,
-    steamID : undefined
-  }
+  userDetails : cookie.load('accessToken') ? jwtDecode(cookie.load('accessToken')) : undefined
 }
 
 export default function appState(state=initialState, action){
   switch (action.type){
     case actions.LOGIN_USER:
-      return { ...state, isLoggedIn : true};
+      return { ...state };
     case actions.LOGOUT_USER:
-      return { ...state, isLoggedIn : false};
+      return { 
+        isLoggedIn : false,
+        accessToken : undefined,
+        isFetching : false,
+        userDetails : undefined
+       };
     default:
       return state;
   }

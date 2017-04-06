@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 
 app.use('/api/auth', authRouter);
 app.use('/api/items', itemRouter);
-app.use('/api/garage', garageRouter);
+app.use('/api/garages', garageRouter);
 
 app.listen(9000, () => {
   console.log("Listening on port 9000");

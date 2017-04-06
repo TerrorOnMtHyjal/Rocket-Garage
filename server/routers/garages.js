@@ -9,18 +9,19 @@ module.exports = (app, express, passport) => {
       return getGarages(result[0].uid);
     })
     .then(garages => {
+      console.log(garages)
       res.json(garages);
     });
   });
 
-  garagesRouter.get('/', 
-    passport.authenticate('jwt', { session : false }), 
-    (req, res) => {
-      getGarages(req.user[0].uid)
-      .then(garages => {
-        res.json(garages);
-      });
-    });
+  // garagesRouter.get('/', 
+  //   passport.authenticate('jwt', { session : false }), 
+  //   (req, res) => {
+  //     getGarages(req.user[0].uid)
+  //     .then(garages => {
+  //       res.json(garages);
+  //     });
+  //   });
 
   return garagesRouter;
 }

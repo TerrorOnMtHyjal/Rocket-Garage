@@ -5,10 +5,11 @@ const db  = require ('../../db/db'),
 
 const garageDefinition = [{
   gid : 'gid',
+  owner_uid: 'owner_uid',
   header : 'header',
   subheader : 'subheader',
   platform : 'platform',
-  primaryStore : 'primaryStore',
+  primaryGarage : 'primaryGarage',
   items : [{
     name : 'name',
     color : 'color',
@@ -44,15 +45,6 @@ exports.getUidByUsername = (username) => {
     .select('uid')
 }
 
-exports.getItems = (uid) => {
-  return db('user_items')
-  .where('user_id', '=', uid)
-  .join('items', 'user_items.item', '=', 'items.iid')
-  .leftOuterJoin('paints', 'user_items.paint', '=', 'paints.pid')
-  .leftOuterJoin('certs', 'user_items.cert', '=', 'certs.cid')
-  .select('items.name as name', 'paints.color as color', 'certs.type as cert', 'user_items.uiid as uiid')
-}
-
 exports.getGarages = (uid) => {
   return db('garages')
   .where('garages.user_id', '=', uid)
@@ -60,7 +52,10 @@ exports.getGarages = (uid) => {
   .join('items', 'user_items.item', '=', 'items.iid')
   .leftOuterJoin('paints', 'user_items.paint', '=', 'paints.pid')
   .leftOuterJoin('certs', 'user_items.cert', '=', 'certs.cid')
-  .select('garages.header as header', 'garages.subheader as subheader', 'garages.platform as platform', 'garages.primaryStore as primaryStore', 'garages.gid as gid',
-          'items.name as name', 'paints.color as color', 'certs.type as cert', 'user_items.uiid as uiid', 'items.type as itemType', 'user_items.postType as postType')
-  .then(data => nest.nest(data, garageDefinition))
+  .select('garages.header as header', 'garages.subheader as subheader', 'garages.platform as platform', 'garages.primaryGarage as primaryGarage', 'garages.gid as gid',
+          'items.name as name', 'paints.color as color', 'certs.type as cert', 'user_items.uiid as uiid', 'items.type as itemType', 'user_items.postType as postType', 
+          'garages.user_id as owner_uid')
+  .then(data => {
+    return nest.nest(data, garageDefinition);
+  })
 }           

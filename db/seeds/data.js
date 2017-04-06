@@ -731,33 +731,93 @@ const data = {
       user_id : 1,
       item : 1,
       postType : "have",
-      store_id : 1
+      garage_id : 1
+    },
+    {
+      user_id : 1,
+      item : 475,
+      paint : 5,
+      cert : 4,
+      postType : "have",
+      garage_id : 1
+    },
+    {
+      user_id : 1,
+      item : 237,
+      postType : "want",
+      garage_id : 1
+    },
+    {
+      user_id : 1,
+      item : 4,
+      cert : 1,
+      postType : "have",
+      garage_id : 1
+    },
+    {
+      user_id : 1,
+      item : 466,
+      paint : 8,
+      postType : "have",
+      garage_id : 1
+    },
+    {
+      user_id : 1,
+      item : 252,
+      postType : "want",
+      garage_id : 1
+    },
+    {
+      user_id : 1,
+      item : 5,
+      cert : 7,
+      postType : "have",
+      garage_id : 1
     },
     {
       user_id : 1,
       item : 466,
       paint : 2,
       postType : "have",
-      store_id : 1
+      garage_id : 1
     },
     {
       user_id : 1,
       item : 237,
       postType : "want",
-      store_id : 1
+      garage_id : 1
+    },
+    {
+      user_id : 1,
+      item : 321,
+      postType : "have",
+      garage_id : 1
+    },
+    {
+      user_id : 1,
+      item : 291,
+      paint : 5,
+      postType : "have",
+      garage_id : 1
+    },
+    {
+      user_id : 1,
+      item : 222,
+      postType : "want",
+      garage_id : 1
     },
     {
       user_id : 1,
       item : 322,
       paint : 2,
       postType : "have",
-      store_id : 4
+      garage_id : 4
     },
     {
       user_id : 1,
       item : 237,
       postType : "want",
-      store_id : 4
+      garage_id : 4
     },
     {
       user_id : 2,
@@ -765,13 +825,13 @@ const data = {
       paint : 3,
       cert : 5,
       postType : "have",
-      store_id : 2
+      garage_id : 2
     },
     {
       user_id : 2,
       item : 122,
       postType : "want",
-      store_id : 2
+      garage_id : 2
     },
     {
       user_id : 3,
@@ -779,7 +839,7 @@ const data = {
       paint : 7,
       cert : 3,
       postType : "have",
-      store_id : 3
+      garage_id : 3
     }
   ],
   paints : [

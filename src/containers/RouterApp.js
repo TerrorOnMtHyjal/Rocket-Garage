@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import Logout from '../components/Logout';
 import Login from '../components/Login';
 import Home from '../components/Home';
+import UserGarage from './UserGarage';
+import Garage from './Garage';
 
 const LogLink = (props) => {
     return props.loggedIn ? (
@@ -32,10 +34,10 @@ export class RouterApp extends Component {
           <Links loggedIn={this.props.loggedIn}/>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/edit" render={ () => <h1>My Garage</h1> }/>
+            <Route path="/edit" render={ () => !this.props.loggedIn ? <Redirect to="/login"/> : <UserGarage/> }/>
             <Route path="/login" render={ () => this.props.loggedIn ? <Redirect to="/edit"/> : <Login/> }/>
             <Route path="/logout" component={ Logout }/>
-            <Route path="/:username" render={ () => <h1>User Garage</h1> }/>
+            <Route path="/:username" component={ Garage }/>
           </Switch>
         </div>
       </Router>
