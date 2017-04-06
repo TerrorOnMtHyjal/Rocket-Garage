@@ -3,15 +3,24 @@ import { connect } from 'react-redux';
 //import cookie from 'react-cookie';
 //import jwtDecode from 'jwt-decode';
 
-import { getGarages, updateViewedPostType } from '../actions/actions';
+import { getGarages, updateViewedPostType, updateDisplayedGID } from '../actions/actions';
 
 class Garage extends Component {
   componentWillMount(){
-    this.props.dispatch(getGarages(this.props.match.params.username))
+    if(this.props.match){
+      this.props.dispatch(getGarages(this.props.match.params.username))
+    } else {
+      this.props.dispatch(getGarages(this.props.username))
+    }
   }
 
   render() {
     const currentGarage = this.props.garages[this.props.displayedGID];
+    const garagesArray = [];
+
+    for(let garage in this.props.garages){
+      garagesArray.push(this.props.garages[garage]);
+    }
 
     return (
       <div>
@@ -31,6 +40,14 @@ class Garage extends Component {
         </ul>
         <button onClick={() => this.props.dispatch(updateViewedPostType("have"))}>Have</button>
         <button onClick={() => this.props.dispatch(updateViewedPostType("want"))}>Want</button>
+        <br />
+        {currentGarage ? (
+          garagesArray.map(garage => {
+            return <button key={garage.gid} onClick={() => this.props.dispatch(updateDisplayedGID(garage.gid))}>Garage #{garage.gid}</button>
+          })
+        ) : (
+          undefined
+        )}
       </div>
     );
   }

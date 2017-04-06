@@ -7,6 +7,7 @@ export const GARAGES_GET_REQUEST = 'GARAGES_GET_REQUEST';
 export const GARAGES_GET_SUCCESS = 'GARAGES_GET_SUCCESS';
 export const GARAGES_GET_ERROR = 'GARAGES_GET_ERROR';
 export const UPDATE_VIEWED_POST_TYPE = 'UPDATE_VIEWED_POST_TYPE';
+export const UPDATE_DISPLAYED_GID = 'UPDATE_DISPLAYED_GID';
 
 export const getGarages = (username = undefined) => (dispatch, getState) => {
   const currentState = getState();
@@ -73,6 +74,11 @@ function garagesGetError(err) {
 export const updateViewedPostType = (postType) => ({
   type : UPDATE_VIEWED_POST_TYPE,
   postType
+});
+
+export const updateDisplayedGID = (gid) => ({
+  type : UPDATE_DISPLAYED_GID,
+  gid
 });
 
 export const loginUser = () => {

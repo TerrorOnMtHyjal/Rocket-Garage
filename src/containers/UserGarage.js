@@ -3,16 +3,21 @@ import { connect } from 'react-redux';
 // import cookie from 'react-cookie';
 // import jwtDecode from 'jwt-decode';
 
-// import Garage from './Garage';
+import Garage from './Garage';
 
 class UserGarage extends Component {
   render() {
     return (
       <div>
         <h1>User Garage</h1>
+        <Garage username={this.props.username}/>
       </div>
     );
   }
 }
 
-export default connect()(UserGarage);
+const mapState = (state) => ({
+  username : state.appState.userDetails.username
+});
+
+export default connect(mapState)(UserGarage);

@@ -14,6 +14,8 @@ const initialState= {
 
 export default function appState(state=initialState, action){
   switch (action.type){
+    case actions.UPDATE_DISPLAYED_GID:
+      return { ...state, displayedGID : action.gid}
     case actions.UPDATE_VIEWED_POST_TYPE:
       return { ...state, displayedPostType : action.postType}
     case actions.GARAGES_GET_SUCCESS:
