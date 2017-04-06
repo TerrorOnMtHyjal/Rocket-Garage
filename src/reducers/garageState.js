@@ -28,23 +28,13 @@ const _initialState= {
   }
 }
 
-const initialState = {
-  user : {},
-  viewed : {}
-};
+const initialState = {};
 
 export default function garagesState(state=initialState, action){
   switch (action.type){
     case actions.GARAGES_GET_SUCCESS:
-      const newState = { ...state };
 
-      if(action.isUserGarage){
-        newState.user = action.garages;
-        return newState;
-      }      
-      newState.viewed = action.garages;
-
-      return newState;
+      return { ...action.garages };
     case actions.LOGOUT_USER:
     
       return { ...state, user : {} };

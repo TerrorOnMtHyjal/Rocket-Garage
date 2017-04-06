@@ -6,6 +6,7 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 export const GARAGES_GET_REQUEST = 'GARAGES_GET_REQUEST';
 export const GARAGES_GET_SUCCESS = 'GARAGES_GET_SUCCESS';
 export const GARAGES_GET_ERROR = 'GARAGES_GET_ERROR';
+export const UPDATE_VIEWED_POST_TYPE = 'UPDATE_VIEWED_POST_TYPE';
 
 export const getGarages = (username = undefined) => (dispatch, getState) => {
   const currentState = getState();
@@ -43,11 +44,21 @@ function garagesGetRequest() {
 }
 
 function garagesGetSuccess(garages, isUserGarage) {
+  let displayedGID;
+
+
+  for(let garage in garages){
+    if(garages[garage].primaryGarage){
+      displayedGID = garages[garage].gid;
+    }
+  }
+
   return {
     type : GARAGES_GET_SUCCESS,
     isFetching : false,
     garages,
-    isUserGarage
+    isUserGarage,
+    displayedGID
   };
 }
 
@@ -58,6 +69,11 @@ function garagesGetError(err) {
     err
   };
 }
+
+export const updateViewedPostType = (postType) => ({
+  type : UPDATE_VIEWED_POST_TYPE,
+  postType
+});
 
 export const loginUser = () => {
   const user = jwtDecode(cookie.load('accessToken'));
