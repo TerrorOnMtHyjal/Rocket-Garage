@@ -3,19 +3,7 @@ import { connect } from 'react-redux';
 
 import { loginUser } from '../actions/actions';
 
-class Login extends Component {
-  componentWillMount(){
-
-  }
-
-  componentDidMount(){
-    
-    if(this.props.loggedIn){
-      console.log("you're already logged in!");
-      this.props.history.push("/");
-    }
-  }
-  
+export default class Login extends Component { 
   render() {
     return (
       <div>
@@ -26,4 +14,3 @@ class Login extends Component {
   }
 }
 
-export default connect()(Login);

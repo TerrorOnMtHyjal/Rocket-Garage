@@ -17,7 +17,7 @@ module.exports = (app, express, passport) => {
         console.log(user);
         const payload = user[0];      
         res.cookie('accessToken', generateJWT(payload));
-        res.redirect(`/edit`);
+        res.redirect(`/login`);
       });
     }
   );

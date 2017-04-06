@@ -5,10 +5,10 @@ export const STORE_GET_ERROR = 'STORE_GET_ERROR';
 export const UPDATE_ITEMS_TYPE = 'UPDATE_ITEMS_TYPE';
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
-import cookie from 'react-cookie';
 
-export const getStore = (username = undefined) => dispatch => {
-  const opts = { headers : { Authorization : `JWT ${cookie.load('accessToken')}` } };
+export const getStore = (username = undefined) => (dispatch, getState) => {
+  const currentState = getState();
+  const opts = { headers : { Authorization : `JWT ${currentState.appState.token}` } };
   const storeType = username ? "viewedStore" : "userStore";
   
   dispatch(storeGetRequest());

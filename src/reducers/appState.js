@@ -1,7 +1,9 @@
-import * as actions from '../actions/actions'
+import * as actions from '../actions/actions';
+import cookie from 'react-cookie';
 
 const initialState= {
-  isLoggedIn : false,
+  isLoggedIn : cookie.load('accessToken') ? true : false,
+  accessToken : cookie.load('accessToken'),
   isFetching : false,
   userDetails : {
     uid : undefined,
