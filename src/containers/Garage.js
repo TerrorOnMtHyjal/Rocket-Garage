@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import cookie from 'react-cookie';
-//import jwtDecode from 'jwt-decode';
 
 import { getGarages, updateViewedPostType, updateDisplayedGID } from '../actions/actions';
 
@@ -27,6 +25,20 @@ class Garage extends Component {
         <h1>{currentGarage ? currentGarage.header : undefined}</h1>
         <h3>{currentGarage ? currentGarage.subheader : undefined}</h3>
         <p>Platform : {currentGarage ? currentGarage.platform : undefined}</p>
+        <button onClick={() => this.props.dispatch(updateViewedPostType("have"))}>Have</button>
+        <button onClick={() => this.props.dispatch(updateViewedPostType("want"))}>Want</button>
+        <br />
+        {currentGarage ? (
+          garagesArray.length > 1 ? (
+            garagesArray.map(garage => {
+              return <button key={garage.gid} onClick={() => this.props.dispatch(updateDisplayedGID(garage.gid))}>Garage #{garage.gid}</button>
+            })
+          ) : (
+            undefined
+          )
+        ) : (
+          undefined
+        )}
         <ul>
           {currentGarage ? (
             currentGarage.items.map(item => {
@@ -38,16 +50,6 @@ class Garage extends Component {
               undefined
             )}
         </ul>
-        <button onClick={() => this.props.dispatch(updateViewedPostType("have"))}>Have</button>
-        <button onClick={() => this.props.dispatch(updateViewedPostType("want"))}>Want</button>
-        <br />
-        {currentGarage ? (
-          garagesArray.map(garage => {
-            return <button key={garage.gid} onClick={() => this.props.dispatch(updateDisplayedGID(garage.gid))}>Garage #{garage.gid}</button>
-          })
-        ) : (
-          undefined
-        )}
       </div>
     );
   }
