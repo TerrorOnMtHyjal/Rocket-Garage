@@ -8,6 +8,7 @@ const initialState= {
   accessToken : cookie.load('accessToken') ? cookie.load('accessToken') : undefined,
   isFetching : false,
   userDetails : cookie.load('accessToken') ? jwtDecode(cookie.load('accessToken')) : undefined,
+  //move displayed to new reducer
   displayed : {
     username : undefined,
     gid : undefined,
@@ -31,7 +32,7 @@ export default function appState(state=initialState, action){
         accessToken : undefined,
         isFetching : false,
         userDetails : undefined,
-        displayedGID : undefined
+        displayed : undefined
        };
     default:
       return state;

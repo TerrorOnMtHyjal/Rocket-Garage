@@ -9,7 +9,7 @@ export const GARAGES_GET_ERROR = 'GARAGES_GET_ERROR';
 export const UPDATE_VIEWED_POST_TYPE = 'UPDATE_VIEWED_POST_TYPE';
 export const UPDATE_DISPLAYED_GID = 'UPDATE_DISPLAYED_GID';
 
-export const getGarages = (username = undefined) => (dispatch, getState) => {
+export const getGarages = (username) => (dispatch, getState) => {
   const currentState = getState();
   const opts = { headers : { Authorization : `JWT ${currentState.appState.token}` } };
 

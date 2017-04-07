@@ -6,35 +6,25 @@ import { getGarages, updateViewedPostType, updateDisplayedGID } from '../actions
 
 class Garage extends Component {
   componentWillMount(){
-    if(this.props.match){
-      this.props.dispatch(getGarages(this.props.match.params.username))
-    } else {
-      this.props.dispatch(getGarages(this.props.username))
-    }
-  }
-
-  dataChanged(data){
-    console.log(data);
+    this.props.dispatch(getGarages(this.props.match.params.username))
   }
 
   render() {
-    let currentGarage = this.props.garageDetails ? this.props.garageDetails.garages[this.props.gid] : undefined;
+    if(!this.props.garageDetails){
+      return <h1>Loading...</h1>
+    }
+
+    let currentGarage = this.props.garageDetails.garages[this.props.gid];
 
     return (
-      currentGarage ? (
-        <div>
-          <h1>{currentGarage.header}</h1>
-          <h3>{currentGarage.subheader}</h3>
-          <p>Platform : {currentGarage.platform}</p>
-          <button onClick={() => this.props.dispatch(updateViewedPostType("have"))}>Have</button>
-          <button onClick={() => this.props.dispatch(updateViewedPostType("want"))}>Want</button>
-          {currentGarage.items.map(item => item.postType === this.props.postType ? <Item key={item.uiid} item={item}/> : undefined)}
-        </div>
-      ) : (
-        <div>
-          <h1></h1>
-        </div>
-      )
+      <div>
+        <h1>{currentGarage.header}</h1>
+        <h3>{currentGarage.subheader}</h3>
+        <p>Platform : {currentGarage.platform}</p>
+        <button onClick={() => this.props.dispatch(updateViewedPostType("have"))}>Have</button>
+        <button onClick={() => this.props.dispatch(updateViewedPostType("want"))}>Want</button>
+        {currentGarage.items.map(item => item.postType === this.props.postType ? <Item key={item.uiid} item={item}/> : undefined)}
+      </div>
     )
   }
 }
