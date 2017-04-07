@@ -22,15 +22,8 @@ export const getGarages = (username = undefined) => (dispatch, getState) => {
     }
     return response.json();
   })
-  .then(garagesArray => {
-    const isUserGarage = currentState.appState.userDetails && currentState.appState.userDetails.uid === garagesArray[0].owner_uid ? true : false;
-    const garages = {};
-
-    garagesArray.forEach(garage => {
-      garages[garage.gid] = garage;
-    });
-
-    dispatch(garagesGetSuccess(garages, isUserGarage));
+  .then(garages => {
+    dispatch(garagesGetSuccess(garages));
   })
   .catch(err => {
     dispatch(garagesGetError(err));
@@ -44,22 +37,21 @@ function garagesGetRequest() {
   };
 }
 
-function garagesGetSuccess(garages, isUserGarage) {
-  let displayedGID;
-
-
-  for(let garage in garages){
-    if(garages[garage].primaryGarage){
-      displayedGID = garages[garage].gid;
-    }
+function garagesGetSuccess(garageDetails) {
+  let primaryGarage;
+  
+  for(let garage in garageDetails.garages){
+    if(garageDetails.garages[garage].primaryGarage){
+      primaryGarage = parseInt(garage, 10);
+    } 
   }
 
   return {
     type : GARAGES_GET_SUCCESS,
     isFetching : false,
-    garages,
-    isUserGarage,
-    displayedGID
+    ownerDetails : garageDetails.ownerDetails,
+    garages : garageDetails.garages,
+    primaryGarage
   };
 }
 
@@ -83,11 +75,8 @@ export const updateDisplayedGID = (gid) => ({
 
 export const loginUser = () => {
   const user = jwtDecode(cookie.load('accessToken'));
-  const garages = jwtDecode(cookie.load('userGarages'));
   const action = {
     type : LOGIN_USER,
-    user,
-    garages
   }
   cookie.remove('userGarages');
   return action;

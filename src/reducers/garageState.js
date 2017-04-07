@@ -1,42 +1,22 @@
 import * as actions from '../actions/actions';
 
-const _initialState= {
-  user : {
-    primary : {
-      gid : undefined,
-      items : [],
-      activeItemType : "have",
-      header : undefined,
-      subheader : undefined,
-      platform : undefined
-    },
-    secondary : []
-  },
-  viewed : {
-    uid : undefined,
-    username :undefined,
-    steamID : undefined,
-    primary : {
-      gid : undefined,
-      items : [],
-      activeItemType : "have",
-      header : undefined,
-      subheader : undefined,
-      platform : undefined
-    },
-    secondary : []
-  }
-}
-
 const initialState = {};
 
 export default function garagesState(state=initialState, action){
   switch (action.type){
     case actions.GARAGES_GET_SUCCESS:
+      const newState = { ...state };
 
-      return { ...action.garages };
-    case actions.LOGOUT_USER:
-    
+      newState[action.ownerDetails.username] = {
+        ownerDetails : {
+          uid : action.ownerDetails.uid,
+          steamID : action.ownerDetails.steamID,
+        },
+        garages : action.garages,
+      }
+
+      return { ...newState };
+    case actions.LOGOUT_USER:   
       return { ...state, user : {} };
     default:
       return state;

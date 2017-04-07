@@ -8,20 +8,26 @@ module.exports = (app, express, passport) => {
     .then(result => {
       return getGarages(result[0].uid);
     })
-    .then(garages => {
-      console.log(garages)
-      res.json(garages);
+    .then(garageDetails => {
+      const garages = garageDetails[0].garages;
+      const ownerDetails = garageDetails[0].owner_details;
+      const formattedGarages = {
+        ownerDetails,
+        garages : {}
+      };
+
+      garages.forEach(({ gid, header, subheader, platform, primaryGarage, items }) => {
+        formattedGarages.garages[gid] = {
+          header,
+          subheader,
+          platform,
+          primaryGarage,
+          items
+        }
+      });
+      res.json(formattedGarages);
     });
   });
-
-  // garagesRouter.get('/', 
-  //   passport.authenticate('jwt', { session : false }), 
-  //   (req, res) => {
-  //     getGarages(req.user[0].uid)
-  //     .then(garages => {
-  //       res.json(garages);
-  //     });
-  //   });
 
   return garagesRouter;
 }

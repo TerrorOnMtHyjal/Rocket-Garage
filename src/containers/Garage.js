@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Item from '../components/Item';
 import { getGarages, updateViewedPostType, updateDisplayedGID } from '../actions/actions';
 
 class Garage extends Component {
@@ -12,53 +13,36 @@ class Garage extends Component {
     }
   }
 
-  render() {
-    const currentGarage = this.props.garages[this.props.displayedGID];
-    const garagesArray = [];
+  dataChanged(data){
+    console.log(data);
+  }
 
-    for(let garage in this.props.garages){
-      garagesArray.push(this.props.garages[garage]);
-    }
+  render() {
+    let currentGarage = this.props.garageDetails ? this.props.garageDetails.garages[this.props.gid] : undefined;
 
     return (
-      <div>
-        <h1>{currentGarage ? currentGarage.header : undefined}</h1>
-        <h3>{currentGarage ? currentGarage.subheader : undefined}</h3>
-        <p>Platform : {currentGarage ? currentGarage.platform : undefined}</p>
-        <button onClick={() => this.props.dispatch(updateViewedPostType("have"))}>Have</button>
-        <button onClick={() => this.props.dispatch(updateViewedPostType("want"))}>Want</button>
-        <br />
-        {currentGarage ? (
-          garagesArray.length > 1 ? (
-            garagesArray.map(garage => {
-              return <button key={garage.gid} onClick={() => this.props.dispatch(updateDisplayedGID(garage.gid))}>Garage #{garage.gid}</button>
-            })
-          ) : (
-            undefined
-          )
-        ) : (
-          undefined
-        )}
-        <ul>
-          {currentGarage ? (
-            currentGarage.items.map(item => {
-              if(item.postType === this.props.displayedPostType){
-                return <li key={item.uiid} data-owner={currentGarage.owner_uid}>{item.name}</li>;
-              }
-            })
-            ) : (
-              undefined
-            )}
-        </ul>
-      </div>
-    );
+      currentGarage ? (
+        <div>
+          <h1>{currentGarage.header}</h1>
+          <h3>{currentGarage.subheader}</h3>
+          <p>Platform : {currentGarage.platform}</p>
+          <button onClick={() => this.props.dispatch(updateViewedPostType("have"))}>Have</button>
+          <button onClick={() => this.props.dispatch(updateViewedPostType("want"))}>Want</button>
+          {currentGarage.items.map(item => item.postType === this.props.postType ? <Item key={item.uiid} item={item}/> : undefined)}
+        </div>
+      ) : (
+        <div>
+          <h1></h1>
+        </div>
+      )
+    )
   }
 }
 
 const mapState = (state) => ({
-  displayedGID :  state.appState.displayedGID,
-  displayedPostType : state.appState.displayedPostType,
-  garages : state.garageState
+  gid :  state.appState.displayed.gid,
+  postType : state.appState.displayed.postType,
+  garageDetails : state.garageState[state.appState.displayed.username]
 });
 
 export default connect(mapState)(Garage);

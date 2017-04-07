@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 // import jwtDecode from 'jwt-decode';
 
 import Garage from './Garage';
+import AddItemControls from '../components/AddItemControls';
 
 class UserGarage extends Component {
   render() {
     return (
       <div>
-        <h1>User Garage</h1>
         <Garage username={this.props.username}/>
+        <AddItemControls />
       </div>
     );
   }
