@@ -58,7 +58,7 @@ class Garage extends Component {
           {this.renderEditables(currentGarage)}
           <button onClick={() => this.props.dispatch(updateViewedPostType("have"))}>Have</button>
           <button onClick={() => this.props.dispatch(updateViewedPostType("want"))}>Want</button>
-          {currentGarage.items.map(item => item.postType === this.props.postType ? <Item key={item.uiid} item={item}/> : undefined)}
+          {currentGarage.items.map(item => item.postType === this.props.postType ? <Item editable={true} key={item.uiid} item={item}/> : undefined)}
         </div>
       ) : (
         <div>
