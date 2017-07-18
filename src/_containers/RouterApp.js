@@ -6,7 +6,7 @@ import Logout from '../components/Logout';
 import Login from '../components/Login';
 import Home from '../components/Home';
 import UserGarage from './UserGarage';
-import Garage from './Garage/Garage';
+import Garage from './Garage';
 
 const LogLink = (props) => {
     return props.loggedIn ? (

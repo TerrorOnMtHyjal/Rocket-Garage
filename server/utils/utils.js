@@ -21,7 +21,8 @@ const garageDefinition = [{
       cert : 'cert',
       uiid : 'uiid',
       itemType : 'itemType',
-      postType : 'postType'
+      postType : 'postType',
+      rarity : 'rarity'
     }]
   }]
 }];
@@ -61,7 +62,7 @@ exports.getGarages = (uid) => {
   .leftOuterJoin('certs', 'user_items.cert', '=', 'certs.cid')
   .select('garages.header as header', 'garages.subheader as subheader', 'garages.platform as platform', 'garages.primaryGarage as primaryGarage', 'garages.gid as gid',
           'items.name as name', 'paints.color as color', 'certs.type as cert', 'user_items.uiid as uiid', 'items.type as itemType', 'user_items.postType as postType', 
-          'garages.user_id as uid', 'users.steamID as steamID', 'users.username as username')
+          'garages.user_id as uid', 'users.steamID as steamID', 'users.username as username', 'items.rarity as rarity')
   .then(data => {
     return nest.nest(data, garageDefinition);
   })

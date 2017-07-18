@@ -18,13 +18,15 @@
     "pg": "^6.1.5",
     "pug": "^2.0.0-beta11",
     "react": "^15.4.2",
+    "react-autosuggest": "^9.1.0",
     "react-cookie": "^1.0.5",
     "react-dom": "^15.4.2",
     "react-edit-inline": "^1.0.8",
     "react-redux": "^5.0.3",
     "react-router-dom": "^4.0.0",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^2.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",

@@ -1,4 +1,13 @@
-//naming conventions not constant
+  // rules : {
+  //   paintable : {
+  //     decal : ["Funny Book", "Tribal", "Cobra", "Unmasked", "Super RX-T"],
+  //     body : ["Endo", "Mantis", "Centio V17", "Animus GP"],
+  //     boost : ["Magic Missile", "Helios", "Neothermal", "Hexphase", "Tachyon"],
+  //     trails: ["Friction"]
+  //   }
+  // }
+
+  //naming conventions not constant
 
 const data = {
   items : {
@@ -633,238 +642,267 @@ const data = {
         "Bobby Helmet",
         "Brunnehilde",
         "Cherry Top",
-        "Devil Horns",
-        "Fez",
-        "Fire Helmet",
+        "Day of the Tentacle",
+        "Deadmau5",
+        {
+          name : "Devil Horns",
+          invalidPaints : ["Crimson"]
+        },
+        {
+          name : "Fez",
+          invalidPaints : ["Crimson"]
+        },
+        {
+          name : "Fire Helmet",
+          invalidPaints : ["Crimson", "Orange"]
+        },
         "Halo",
-        "Hard Hat",
-        "Mariachi Hat",
-        "Pirate's Hat",
+        {
+          name : "Hard Hat",
+          invalidPaints : ["Black", "Saffron"]
+        },
+        "Hot Wheels",
+        {
+          name : "Mariachi Hat",
+          invalidPaints : ["Black", "Crimson"]
+        },
+        {
+          name : "Pirate's Hat",
+          invalidPaints : ["Black", "Grey"]
+        },
         "Pizza Topper",
+        "Portal - Cake",
         "Propellerhead",
-        "Royal Crown",
+        {
+          name : "Royal Crown",
+          invalidPaints : ["Crimson"]
+        },
+        "Shark Bite",
         "Sombrero",
         "Taxi Topper",
-        "Top Hat",
-        "Witch's Hat",
-        "Wizard Hat",
-        "Portal Cake",
-        "Deadmau5",
-        "Day of the Tentacle",
-        "Sharkbite",
-        "Hot Wheels"
+        {
+          name : "Top Hat",
+          invalidPaints : ["Black", "Grey"]
+        },
+        {
+          name : "Witch's Hat",
+          invalidPaints : ["Purple"]
+        },
+        {
+          name : "Wizard Hat",
+          invalidPaints : ["Saffron", "Sky Blue"]
+        },
+        "Worms W.M.D"
       ],
       Limited : [
-        "Gold Cap [Alpha Reward]",
-        "Pumpkin",
         "Blitzen",
+        "Bone King",
+        "Bunny Ears",
         "Christmas Tree",
+        "Easter Basket",
+        "Ghost",
+        "Gold Cap [Alpha Reward]",
+        "Helper Elf",
+        "Hustle Brows",
+        "Mount Champion",
+        "New Year's 2017",
+        "Pumpkin",
         "Sad Sapling",
         "Santa",
-        "White Hat",
-        "Bone King",
-        "Ghost",
-        "Helper Elf",
-        "New Year's 2017",
-        "Bunny Ears",
-        "Easter Basket",
         "White Hat"
       ],
       Premium : [
-        "Cavalier",
-        "Locomotive",
-        "Pixelated Shades",
-        "Shark Fin",
         "Boombox",
+        "Cavalier",
         "Cow Skull",
-        "Mohawk"
+        "Locomotive",
+        "Mohawk",
+        "Pixelated Shades",
+        "Shark Fin"
       ],
       Rare : [
+        "Clamshell",
+        {
+          name : "Drink Helmet",
+          invalidPaints : ["Sky Blue"]
+        },
         "Robo-Visor",
-        "Wildcat Ears",
-        "Drink Helmet",
-        "Clamshell"
+        {
+          name : "Wildcat Ears",
+          invalidPaints : ["Black", "Burnt Sienna", "Orange"]
+        },
       ],
       Uncommon : [
-        "Unicorn",
-        "Traffic Cone",
-        "Tiara",
-        "Shuriken",
-        "Rhino Horns",
-        "Mouse Trap",
-        "Rasta",
-        "Police Hat",
-        "Plunger",
-        "Paper Boat",
-        "Graduation Cap",
-        "Bowler",
-        "Fruit Hat",
-        "Brodie Helmet",
-        "Homburg",
-        "Derby",
-        "Deerstalker",
-        "Cockroach",
-        "Chef's Hat",
-        "Chainsaw",
-        "Captain's Hat",
-        "Work Boot",
-        "Birthday Cake",
-        "Biker Cap",
-        "Beret",
         "Antlers",
-        "Pigeon",
-        "Little Bow",
-        "Cattleman",
-        "Pork Pie",
-        "Ivy Cap",
-        "Light Bulb",
-        "Party Hat",
-        "Trucker Hat", 
-        "Visor",
-        "Baseball Cap [F]",
         "Baseball Cap [B]",
-        "Foam Hat"
+        "Baseball Cap [F]",
+        {
+          name : "Beret",
+          invalidPaints : ["Black", "Crimson"]
+        },
+        "Biker Cap",
+        {
+          name : "Birthday Cake",
+          invalidPaints : []
+        },
+        {
+          name : "Bowler",
+          invalidPaints : ["Black"]
+        },
+        {
+          name : "Brodie Helmet",
+          invalidPaints : ["Black", "Grey"]
+        },
+        "Captain's Hat",
+        "Cattleman",
+        {
+          name : "Chainsaw",
+          invalidPaints : ["Black", "Orange"]
+        },
+        {
+          name : "Chef's Hat",
+          invalidPaints : ["Titanium White"]
+        },
+        "Cockroach",
+        "Deerstalker",
+        {
+          name : "Derby",
+          invalidPaints : ["Burnt Sienna"]
+        },
+        "Foam Hat",
+        {
+          name : "Fruit Hat",
+          invalidPaints : ["Purple"]
+        },
+        "Graduation Cap",
+        {
+          name : "Homburg",
+          invalidPaints : ["Black"]
+        },
+        {
+          name : "Ivy Cap",
+          invalidPaints : ["Black", "Grey"]
+        },
+        "Light Bulb",
+        {
+          name : "Little Bow",
+          invalidPaints : ["Crimson"]
+        },
+        "Mouse Trap",
+        "Paper Boat",
+        "Party Hat",
+        "Pigeon",
+        "Plunger",
+        "Police Hat",
+        {
+          name : "Pork Pie",
+          invalidPaints : ["Black", "Grey"]
+        },,
+        "Rasta",
+        "Rhino Horns",
+        "Shuriken",
+        "Tiara",
+        {
+          name : "Traffic Cone",
+          invalidPaints : ["Orange", "Titanium White"]
+        },
+        {
+          name : "Trucker Hat",
+          invalidPaints : ["Black", "Grey"]
+        }, 
+        {
+          name : "Unicorn",
+          invalidPaints : ["Grey", "Titanium White"]
+        },
+        {
+          name : "Visor",
+          invalidPaints : []
+        },
+        "Work Boot"
       ]     
+    },
+    antennas : {
+      Common : [
+        "8-Ball",
+        "Blue Chequered Flag",
+        "Camo Flag",
+        "Dave's Bread",
+        "Deadmau5",
+        "Disconnect",
+        "DIV",
+        "Dollar Sign",
+        "Gingerbread Man",
+        "Heart",
+        "Horseshoe",
+        "Hot Wheels",
+        "Jolly Roger",
+        "Lightning Bolt",
+        "Moai",
+        "Peace",
+        "Planetoid",
+        "Reddit Snoo",
+        "Safety Flag",
+        "Skull",
+        "Smiley",
+        "Snowman",
+        "Soccer Ball",
+        "Sweet Tooth",
+        "Star",
+        "Tennis Ball",
+        "The Game Awards - Statue",
+        "Treasure Hunt",
+        "UFO",
+        "White Flag"
+      ],
+      Uncommon : [
+        "Alien",
+        "Balloon Dog",
+        "Candle",
+        "Chick Magnet",
+        "Cupcake",
+        "Disco Ball",
+        "Doughnut",
+        "Foam Finger",
+        "Genie Lamp",
+        "Harpoon",
+        "Hula Girl",
+        "Parrot",
+        "Pinata",
+        "Rainbow Flag",
+        "Rocket",
+        "Rose",
+        "Rubber Duckie",
+        "Satellite",
+        "Seastar",
+        "Sunflower",
+        "Trident",
+        "Venus Flytrap",
+        "Waffle"
+      ],
+      Limited : [
+        "Gold Nugget",
+        "Calavera",
+        "Fuzzy Brute",
+        "Fuzzy Skull",
+        "Fuzzy Vamp",
+        "Candy Cane",
+        "Holiday Gift",
+        "Nutcracker",
+        "Easter Egg",
+        "Psyonix"
+      ],
+      Premium : [
+        "Batman",
+        "Bomb Pole",
+        "Radioactive",
+        "Retro Ball Urban",
+        "Retro Ball Utopia",
+        "Retro Ball Wasteland",
+        "Superman",
+        "Wonder Woman"
+      ]
     }
   },
-  userItems : [
-    {
-      user_id : 1,
-      item : 1,
-      postType : "have",
-      garage_id : 1
-    },
-    {
-      user_id : 1,
-      item : 475,
-      paint : 5,
-      cert : 4,
-      postType : "have",
-      garage_id : 1
-    },
-    {
-      user_id : 1,
-      item : 237,
-      postType : "want",
-      garage_id : 1
-    },
-    {
-      user_id : 1,
-      item : 4,
-      cert : 1,
-      postType : "have",
-      garage_id : 1
-    },
-    {
-      user_id : 1,
-      item : 466,
-      paint : 8,
-      postType : "have",
-      garage_id : 1
-    },
-    {
-      user_id : 1,
-      item : 252,
-      postType : "want",
-      garage_id : 1
-    },
-    {
-      user_id : 1,
-      item : 5,
-      cert : 7,
-      postType : "have",
-      garage_id : 1
-    },
-    {
-      user_id : 1,
-      item : 466,
-      paint : 2,
-      postType : "have",
-      garage_id : 1
-    },
-    {
-      user_id : 1,
-      item : 237,
-      postType : "want",
-      garage_id : 1
-    },
-    {
-      user_id : 1,
-      item : 321,
-      postType : "have",
-      garage_id : 1
-    },
-    {
-      user_id : 1,
-      item : 291,
-      paint : 5,
-      postType : "have",
-      garage_id : 1
-    },
-    {
-      user_id : 1,
-      item : 222,
-      postType : "want",
-      garage_id : 1
-    },
-    {
-      user_id : 1,
-      item : 322,
-      paint : 2,
-      postType : "have",
-      garage_id : 4
-    },
-    {
-      user_id : 1,
-      item : 237,
-      postType : "want",
-      garage_id : 4
-    },
-    {
-      user_id : 2,
-      item : 467,
-      paint : 3,
-      cert : 5,
-      postType : "have",
-      garage_id : 2
-    },
-    {
-      user_id : 2,
-      item : 122,
-      postType : "want",
-      garage_id : 2
-    },
-    {
-      user_id : 3,
-      item : 472,
-      paint : 7,
-      cert : 3,
-      postType : "have",
-      garage_id : 3
-    },
-    {
-      user_id : 4,
-      item : 10,
-      paint : 3,
-      cert : 7,
-      postType : "have",
-      garage_id : 5
-    },
-    {
-      user_id : 4,
-      item : 392,
-      cert : 2,
-      postType : "have",
-      garage_id : 5
-    },
-    {
-      user_id : 4,
-      item : 253,
-      paint : 5,
-      postType : "have",
-      garage_id : 5
-    }
-  ],
   paints : [
     "Black",
     "Burnt Sienna",
@@ -940,61 +978,6 @@ const data = {
     {
       type: "Victor",
       track: "Wins"
-    }
-  ],
-  users : [
-    {
-      steamID : '76561198050470061',
-      username : 'dustwise'
-    },
-    {
-      steamID : '76561198050470062',
-      username : 'jared'
-    },
-    {
-      steamID : '76561198050470063',
-      username : 'bridget'
-    },
-    {
-      steamID : '76561198050470064',
-      username : 'im_dslyexci'
-    }
-  ],
-  garages : [
-    {
-      user_id : 1,
-      header : "Welcome to Dustwise's Bargain Bin!",
-      subheader : "All wheels half off until May.",
-      platform : "PC",
-      primaryGarage : true
-    },
-    {
-      user_id : 2,
-      header : "Jared's Rocket Garage",
-      subheader : "You know you want what I gots! Make me an offer, playa.",
-      platform : "PC",
-      primaryGarage : true
-    },
-    {
-      user_id : 3,
-      header : "Bridget's Rocket-y Goods",
-      subheader : "I think some of this is good stuff?",
-      platform : "PS4",
-      primaryGarage : true
-    },
-    {
-      user_id : 1,
-      header : "Ol' Dusty's Second Shop!",
-      subheader : "Have a look around. And of course this one is PC as well!",
-      platform : "PC",
-      primaryGarage : false
-    },
-    {
-      user_id : 4,
-      header : "Enter my garage...If you care to? ;)",
-      subheader : "I have to sell all of these items quickly because my wife said so.",
-      platform : "PC",
-      primaryGarage : true
     }
   ]
 };

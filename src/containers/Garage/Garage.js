@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Item from '../components/Item';
-import { getGarages, updateViewedPostType, updateDisplayedGID } from '../actions/actions';
+import Item from '../../components/Item';
+import Hero from './Hero';
+import ShopInfo from './ShopInfo';
+import Shop from './Shop';
+import { getGarages, updateViewedPostType, updateDisplayedGID } from '../../actions/actions';
 
 class Garage extends Component {
   componentWillMount(){
@@ -18,12 +21,9 @@ class Garage extends Component {
 
     return (
       <div>
-        <h1>{currentGarage.header}</h1>
-        <h3>{currentGarage.subheader}</h3>
-        <p>Platform : {currentGarage.platform}</p>
-        <button onClick={() => this.props.dispatch(updateViewedPostType("have"))}>Have</button>
-        <button onClick={() => this.props.dispatch(updateViewedPostType("want"))}>Want</button>
-        {currentGarage.items.map(item => item.postType === this.props.postType ? <Item key={item.uiid} item={item}/> : undefined)}
+        <Hero></Hero>
+        <ShopInfo></ShopInfo>
+        <Shop items={currentGarage.items}></Shop>
       </div>
     )
   }
